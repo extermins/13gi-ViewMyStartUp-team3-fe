@@ -2,10 +2,9 @@
 /* src/index.css */
 
 /* 1. 웹폰트 불러오기 (Pretendard) */
-
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
-/* 3. 전역 변수 세팅 (어디서든 var(--이름)으로 사용 가능)
+/* 2. 전역 변수 세팅 (어디서든 var(--이름)으로 사용 가능)
 // 사용 예시
 //  <h1
 //    style={{
@@ -45,7 +44,7 @@
   --font-weight-regular: 400;
 }
 
-/* 4. 브라우저 기본 여백 초기화 및 기본 폰트 적용 */
+/* 3. 브라우저 기본 여백 초기화 및 기본 폰트 적용 */
 body {
   margin: 0;
   padding: 0;
@@ -56,7 +55,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 5. 피그마 시안 기준 중앙 정렬 컨테이너 (반응형 적용) */
+/* 4. 피그마 시안 기준 중앙 정렬 컨테이너 (반응형 적용) */
 #root {
   width: 100%;
   max-width: 1200px; /* PC 기본 최대 가로폭 */
