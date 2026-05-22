@@ -1,4 +1,3 @@
-import React from "react";
 import icon from "../../../assets/icons/ic-minus.svg";
 import styles from "./Card.module.css";
 
