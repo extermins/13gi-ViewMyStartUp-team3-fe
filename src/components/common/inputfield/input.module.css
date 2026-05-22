@@ -43,6 +43,7 @@
   align-items: center;
 }
 .error {
+  margin-top: 8px;
   color: #c41013;
 }
 .input-error {
