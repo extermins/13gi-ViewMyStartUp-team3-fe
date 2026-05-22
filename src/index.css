@@ -78,7 +78,7 @@ input {
 /* 4. 피그마 시안 기준 중앙 정렬 컨테이너 (반응형 적용) */
 #root {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px; /* PC 기본 최대 가로폭 */
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
