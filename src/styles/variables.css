@@ -1,0 +1,29 @@
+:root {
+  /* Brand */
+  --color-brand: #eb5230;
+
+  /* Black */
+  --color-black-400: #131313;
+  --color-black-300: #212121;
+  --color-black-200: #282828;
+  --color-black-100: #2e2e2e;
+
+  /* Gray */
+  --color-gray-400: #333333;
+  --color-gray-300: #4b4b4b;
+  --color-gray-200: #747474;
+  --color-gray-100: #d8d8d8;
+
+  /* Semantic */
+  --color-blue: #5b8dee;
+  --color-error: #c41013;
+
+  /* Surface */
+  --bg-page: var(--color-black-300);
+  --bg-card: var(--color-black-100);
+  --bg-card-hover: var(--color-gray-400);
+  --border: var(--color-gray-400);
+  --text-primary: #ffffff;
+  --text-secondary: var(--color-gray-100);
+  --text-muted: var(--color-gray-200);
+}

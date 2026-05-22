@@ -1,0 +1,77 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s,
+    opacity 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Size */
+.btn--sm {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.btn--md {
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.btn--lg {
+  font-size: 16px;
+  padding: 13px 28px;
+  border-radius: 10px;
+}
+
+/* Primary — 브랜드 오렌지 */
+.btn--primary {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #d14620;
+}
+
+.btn--primary:active:not(:disabled) {
+  background: #b83c1c;
+}
+
+/* Secondary — 아웃라인 */
+.btn--secondary {
+  background: transparent;
+  color: var(--color-brand);
+  border: 1.5px solid var(--color-brand);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: rgba(235, 82, 48, 0.1);
+}
+
+/* Ghost — 텍스트만 */
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
