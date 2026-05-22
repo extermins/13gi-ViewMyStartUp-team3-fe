@@ -49,8 +49,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family-main);
-  color: var(--color-black-400);
-  background-color: #ffffff;
+  color: #ffffff; /* chore: 어두운 배경에 맞춰 기본 글자색을 흰색으로 변경 */
+  background-color: var(--color-black-400); /* chore: 배경색을 블랙으로 변경 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
