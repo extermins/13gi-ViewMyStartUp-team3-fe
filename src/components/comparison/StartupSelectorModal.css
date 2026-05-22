@@ -66,7 +66,7 @@
 }
 
 .modal-search:focus {
-  border-color: var(--color-brand);
+  border-color: var(--color-brand-orange);
 }
 
 .modal-list {
@@ -122,7 +122,7 @@
 .modal-item-stage {
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
   background: rgba(235, 82, 48, 0.15);
   padding: 4px 8px;
   border-radius: 6px;

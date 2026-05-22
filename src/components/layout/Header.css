@@ -60,7 +60,7 @@
 }
 
 .header-nav-link--active {
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
   font-weight: 700;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .header-signup-btn {
-  background: var(--color-brand);
+  background: var(--color-brand-orange);
   border: none;
   font-size: 14px;
   font-weight: 600;
@@ -140,7 +140,7 @@
 
 .header-mobile-link:hover,
 .header-mobile-link--active {
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
   font-weight: 700;
 }
 

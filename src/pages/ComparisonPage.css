@@ -84,7 +84,7 @@
 }
 
 .selected-card-remove:hover {
-  color: var(--color-error);
+  color: var(--color-red-error);
 }
 
 /* 추가 버튼 */
@@ -105,8 +105,8 @@
 }
 
 .add-startup-btn:hover {
-  border-color: var(--color-brand);
-  color: var(--color-brand);
+  border-color: var(--color-brand-orange);
+  color: var(--color-brand-orange);
 }
 
 .add-startup-btn-icon {

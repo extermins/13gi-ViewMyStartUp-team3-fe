@@ -1,6 +1,59 @@
-@import "./styles/reset.css";
-@import "./styles/variables.css";
+/* 색상 리소스, 폰트 리소스 작업 */
+/* src/index.css */
 
+/* 1. 웹폰트 불러오기 (Pretendard) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+/* 2. 전역 변수 세팅 (어디서든 var(--이름)으로 사용 가능)
+// 사용 예시
+//  <h1
+//    style={{
+//      color: "var(--color-brand-orange)",
+//      fontSize: "var(--font-size-20)",
+//    }}
+//  > */
+
+:root {
+  /* 색상 리소스 */
+  --color-black-400: #131313;
+  --color-black-300: #212121;
+  --color-black-200: #282828;
+  --color-black-100: #2e2e2e;
+
+  --color-gray-400: #333333;
+  --color-gray-300: #4b4b4b;
+  --color-gray-200: #747474;
+  --color-gray-100: #d8d8d8;
+
+  --color-brand-orange: #eb5230;
+  --color-blue: #558fff;
+  --color-red-error: #c41013;
+
+  /* 폰트 리소스 */
+  --font-family-main: "Pretendard", sans-serif;
+
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+
+  /* 시맨틱 변수 (비교현황 페이지 다크 테마용) */
+  --bg-page: var(--color-black-300);
+  --bg-card: var(--color-black-100);
+  --bg-card-hover: var(--color-gray-400);
+  --border: var(--color-gray-400);
+  --text-primary: #ffffff;
+  --text-secondary: var(--color-gray-100);
+  --text-muted: var(--color-gray-200);
+}
+
+/* 3. 브라우저 기본 여백 초기화 및 기본 폰트 적용 */
 *,
 *::before,
 *::after {
@@ -8,23 +61,51 @@
 }
 
 body {
-  font-family:
-    "Pretendard",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  font-size: 16px;
-  color: var(--text-primary);
-  background: var(--bg-page);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-main);
+  color: var(--color-black-400);
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
+button,
 input {
   font-family: inherit;
+}
+
+/* 4. 피그마 시안 기준 중앙 정렬 컨테이너 (반응형 적용) */
+#root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* 테블릿 사이즈 (화면 가로폭이 696px 이하일 때 적용) */
+@media (max-width: 696px) {
+  #root {
+    max-width: 696px;
+  }
+}
+
+/* 모바일 사이즈 (화면 가로폭이 375px 이하일 때 적용) */
+@media (max-width: 375px) {
+  #root {
+    max-width: 375px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }

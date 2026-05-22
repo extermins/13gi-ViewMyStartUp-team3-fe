@@ -41,7 +41,7 @@
 
 /* Primary — 브랜드 오렌지 */
 .btn--primary {
-  background: var(--color-brand);
+  background: var(--color-brand-orange);
   color: #fff;
 }
 
@@ -56,8 +56,8 @@
 /* Secondary — 아웃라인 */
 .btn--secondary {
   background: transparent;
-  color: var(--color-brand);
-  border: 1.5px solid var(--color-brand);
+  color: var(--color-brand-orange);
+  border: 1.5px solid var(--color-brand-orange);
 }
 
 .btn--secondary:hover:not(:disabled) {

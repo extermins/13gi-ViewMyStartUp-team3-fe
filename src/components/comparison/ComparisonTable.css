@@ -89,7 +89,7 @@
 
 /* 최고값 셀 — 브랜드 오렌지 강조 */
 .metric-value--best {
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
   font-weight: 700;
   background: rgba(235, 82, 48, 0.08);
 }
@@ -99,7 +99,7 @@
   top: 10px;
   right: 8px;
   font-size: 10px;
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
 }
 
 .stage-badge {
@@ -109,5 +109,5 @@
   font-size: 12px;
   font-weight: 700;
   background: rgba(235, 82, 48, 0.15);
-  color: var(--color-brand);
+  color: var(--color-brand-orange);
 }
