@@ -1,0 +1,63 @@
+/* 드롭 다운 */
+.dropdownList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-black-400);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* PC 모드 길이 */
+.pc {
+  width: 168px;
+}
+
+/* mobile 모드 길이 */
+.mobile {
+  width: 146px;
+}
+
+/* 드롭 다운 아이템 */
+.dropdownItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-gray-100);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+/* 마지막 아이템은 밑줄 제거 */
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+/* PC 모드 아이템 폰트 */
+.pcItem {
+  font-size: 14px;
+  font-weight: 400;
+  height: 40px;
+}
+
+/* mobile 모드 아이템 폰트 */
+.mobileItem {
+  font-size: 12px;
+  font-weight: 400;
+  height: 38px;
+}
+
+/* 마우스를 올렸을 때 효과 */
+.dropdownItem:hover {
+  background-color: #252525;
+}
+
+/* 선택된 아이템 스타일 */
+.isSelected {
+  background-color: #333333;
+  font-weight: 700;
+}
