@@ -1,0 +1,308 @@
+/* 투자 현황 페이지 스타일 */
+
+.investment-page {
+  min-height: 100vh;
+  background: var(--bg-page);
+  padding: 40px 24px 80px;
+}
+
+.investment-page__title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+
+/* ── 컨트롤 영역 (검색 + 정렬) ── */
+.investment-page__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* 검색 폼 */
+.investment-page__search {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.investment-page__search-input {
+  width: 260px;
+  height: 40px;
+  padding: 0 36px 0 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px 0 0 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.investment-page__search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.investment-page__search-input:focus {
+  border-color: var(--color-brand-orange);
+}
+
+/* 검색어 초기화 버튼 */
+.investment-page__search-reset {
+  position: absolute;
+  right: 80px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px;
+  line-height: 1;
+}
+
+.investment-page__search-reset:hover {
+  color: var(--text-primary);
+}
+
+.investment-page__search-btn {
+  height: 40px;
+  padding: 0 16px;
+  background: var(--color-brand-orange);
+  border: 1px solid var(--color-brand-orange);
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.investment-page__search-btn:hover {
+  opacity: 0.85;
+}
+
+/* 정렬 드롭다운 */
+.investment-page__sort {
+  height: 40px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.investment-page__sort:focus {
+  border-color: var(--color-brand-orange);
+}
+
+/* ── 에러/안내 메시지 ── */
+.investment-page__notice {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.investment-page__notice--error {
+  background: rgba(196, 16, 19, 0.1);
+  border: 1px solid var(--color-red-error);
+  color: var(--color-red-error);
+}
+
+/* ── 테이블 ── */
+.investment-page__table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.investment-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.investment-page__table thead {
+  background: var(--bg-card);
+}
+
+.investment-page__table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.investment-page__table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+
+.investment-page__table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.investment-page__table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+
+.investment-page__table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+/* 순위 컬럼 */
+.investment-page__col-rank {
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  width: 56px;
+}
+
+/* 기업명 셀 */
+.investment-page__company {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.investment-page__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.investment-page__logo--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+}
+
+.investment-page__company-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 기업 소개 컬럼 */
+.investment-page__col-desc {
+  color: var(--text-secondary);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 카테고리 태그 */
+.investment-page__category {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(85, 143, 255, 0.12);
+  border: 1px solid rgba(85, 143, 255, 0.3);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--color-blue);
+  white-space: nowrap;
+}
+
+/* 누적 투자금 컬럼 */
+.investment-page__col-amount {
+  font-weight: 700;
+  color: var(--color-brand-orange);
+  white-space: nowrap;
+}
+
+/* 투자 건수 컬럼 */
+.investment-page__col-count {
+  color: var(--text-secondary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 로딩/빈 데이터 */
+.investment-page__status {
+  text-align: center;
+  padding: 48px !important;
+  color: var(--text-muted);
+}
+
+/* ── 페이지네이션 ── */
+.investment-page__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 28px;
+}
+
+.investment-page__page-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.investment-page__page-btn:hover:not(:disabled) {
+  border-color: var(--color-brand-orange);
+  color: var(--color-brand-orange);
+}
+
+.investment-page__page-btn--active {
+  background: var(--color-brand-orange) !important;
+  border-color: var(--color-brand-orange) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.investment-page__page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.investment-page__ellipsis {
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 696px) {
+  .investment-page {
+    padding: 24px 16px 60px;
+  }
+
+  .investment-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .investment-page__search-input {
+    width: 100%;
+  }
+
+  .investment-page__col-desc {
+    display: none;
+  }
+}
