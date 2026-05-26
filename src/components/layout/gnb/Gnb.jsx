@@ -32,7 +32,7 @@ export default function Gnb() {
         <div className={styles["menu-list"]}>
           {/* 각 NavLink에 연결된 경로는 임의로 지정해놨습니다. 담당자 분이 수정해주시면 될 것 같습니다. */}
           <NavLink
-            to="/compare"
+            to="/mypick"
             end
             className={({ isActive }) =>
               `${styles["nav-text"]} ${isActive ? styles["active"] : ""}`
@@ -41,7 +41,7 @@ export default function Gnb() {
             나의 기업 비교
           </NavLink>
           <NavLink
-            to="/compare/status"
+            to="/compare"
             className={({ isActive }) =>
               `${styles["nav-text"]} ${isActive ? styles["active"] : ""}`
             }
