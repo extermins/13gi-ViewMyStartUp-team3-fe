@@ -45,12 +45,11 @@
 }
 
 /* 3. 브라우저 기본 여백 초기화 및 기본 폰트 적용 */
+/* chore: 삭제 및 충돌 우려 리뷰 반영하여 color, background-color 삭제하였습니다. */
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family-main);
-  color: #ffffff; /* chore: 어두운 배경에 맞춰 기본 글자색을 흰색으로 변경 */
-  background-color: var(--color-black-400); /* chore: 배경색을 블랙으로 변경 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
