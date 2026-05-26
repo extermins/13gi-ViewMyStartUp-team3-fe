@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router";
 import logoPc from "/src/assets/images/img-logo-pc.png";
 import logoMobile from "/src/assets/images/img-logo-mobile.png";
-import styles from "/src/components/common/gnb/gnb.module.css";
+import styles from "/src/components/layout/gnb/gnb.module.css";
 import { useEffect, useState } from "react";
 
 export default function Gnb() {
