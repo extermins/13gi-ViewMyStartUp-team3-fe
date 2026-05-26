@@ -10,14 +10,34 @@
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* PC 모드 길이 */
-.pc {
+/* PC + sort 일 때 */
+.pc.sort {
   width: 168px;
 }
 
+/* PC + startup 일 때 */
+.pc.startup {
+  width: 264px;
+}
+
+/* PC + enterprise 일 때 */
+.pc.enterprise {
+  width: 264px;
+}
+
 /* mobile 모드 길이 */
-.mobile {
+.mobile.sort {
   width: 146px;
+}
+
+/* mobile + startup 일 때 */
+.mobile.startup {
+  width: 241px;
+}
+
+/* mobile + enterprise 일 때 */
+.mobile.enterprise {
+  width: 241px;
 }
 
 /* 드롭 다운 아이템 */
