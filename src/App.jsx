@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import "./App.css";
 import MainLayout from "./components/layout/MainLayout";
 import ComparisonPage from "./pages/ComparisonPage";
-import Compare from "./pages/Compare";
+import Mypick from "./pages/Mypick";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           {/* <Route path="/" element={} /> */}
-          <Route path="/mypick" element={<Compare />} />
+          <Route path="/mypick" element={<Mypick />} />
           {/* <Route path="/mypick/result" element={} /> */}
           <Route path="/compare" element={<ComparisonPage />} />
           {/* <Route path="/investment" element={} />
