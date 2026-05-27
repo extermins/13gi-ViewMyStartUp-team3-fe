@@ -1,10 +1,10 @@
 import icon from "../../../assets/icons/ic-minus.svg";
-import styles from "./Card.module.css";
+import styles from "./card.module.css";
 
-const Card = ({ imageUrl, title, subtle }) => {
+const Card = ({ imageUrl, title, subtle, onRemove }) => {
   return (
     <section className={styles.container}>
-      <div className={styles.icon}>
+      <div className={styles.icon} onClick={onRemove}>
         <img src={icon} alt="선택 해제" />
       </div>
       <div className={styles.info}>

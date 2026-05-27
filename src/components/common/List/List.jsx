@@ -1,7 +1,15 @@
 import styles from "./List.module.css";
-import Button from "../Button/Button.jsx";
+import Button from "../button.jsx";
 
-const List = ({ imageUrl, title, subtle, label }) => {
+const List = ({
+  imageUrl,
+  title,
+  subtle,
+  label,
+  onSelect,
+  disabled,
+  buttonVariant,
+}) => {
   return (
     <section className={styles.container}>
       <div className={styles.info}>
@@ -9,7 +17,9 @@ const List = ({ imageUrl, title, subtle, label }) => {
         <p className={styles.title}>{title}</p>
         <p className={styles.subtle}>{subtle}</p>
       </div>
-      <Button>{label}</Button>
+      <Button onClick={onSelect} disabled={disabled} variant={buttonVariant}>
+        {label}
+      </Button>
     </section>
   );
 };
