@@ -1,0 +1,88 @@
+/* src/components/Pagination/Pagination.module.css */
+
+.paginationContainer {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;
+  gap: 10px;
+
+  /* 컴포넌트 독립 배경 설정 */
+  width: 100%;
+  background-color: var(--color-black-400, #131313);
+
+  padding-top: 60px;
+  padding-bottom: 133px;
+}
+
+.numbersWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+/* 숫자 버튼 공통 & [인액티브 상태] */
+.pageButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  background: var(--color-black-100);
+  color: var(--color-gray-200);
+  text-align: center;
+  font-family: var(--font-family-main);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.pageButton:hover:not(.activeButton) {
+  background: var(--color-black-200);
+}
+
+/* [액티브 상태] 선택된 현재 페이지 */
+.activeButton {
+  background: var(--color-brand-orange);
+  color: #ffffff;
+  cursor: default;
+}
+
+/* 화살표 버튼 (이전/다음) */
+.arrowButton {
+  display: inline-flex;
+  padding: 12px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 10px;
+
+  background: var(--color-black-100);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.arrowButton:hover:not(.disabledButton) {
+  background: var(--color-black-200);
+}
+
+.disabledButton {
+  cursor: default;
+}
+
+/* 모바일 화면 (375px 이하) */
+@media (max-width: 375px) {
+  /* 버튼의 패딩과 크기만 줄이고 아이콘은 그대로 보존 */
+  .arrowButton {
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  .pageButton {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
