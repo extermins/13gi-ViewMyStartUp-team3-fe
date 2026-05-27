@@ -1,11 +1,12 @@
 /* 공통 Button 컴포넌트 스타일 */
 /* size: large / medium / small */
-/* variant: filled / outline */
+/* variant: filled / outline / secondary */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   border-radius: 6px;
   font-weight: 700;
   white-space: nowrap;
@@ -32,6 +33,24 @@
   color: var(--color-brand-orange);
 }
 .outline:hover:not(:disabled) { background: rgba(235, 82, 48, 0.12); }
+
+/* 회색 보조 버튼 (기업 선택하기 등) */
+.secondary {
+  background: var(--color-gray-200, #3f3f3f);
+  border: 1px solid transparent;
+  color: var(--color-gray-100, #d1d1d1);
+}
+.secondary:hover:not(:disabled) { opacity: 0.8; }
+
+/* 전체 너비 (모바일 등) */
+.fullWidth { width: 100%; }
+
+/* 아이콘 정렬 */
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  align-items: center;
+}
 
 /* 비활성화 */
 .btn:disabled {
