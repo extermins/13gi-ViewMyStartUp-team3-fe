@@ -9,122 +9,77 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
-/* 페이지 헤더 */
-.page-header {
+/* 헤더: 타이틀 + 드롭다운 */
+.comparison-header {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.page-title {
-  font-size: 28px;
+.comparison-title {
+  font-size: 24px;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.5px;
 }
 
-.page-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-}
-
-/* 선택된 스타트업 영역 */
-.selected-area {
+/* 페이지네이션 */
+.pagination {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.selected-card {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  background: var(--bg-card);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  min-width: 200px;
+  gap: 4px;
 }
 
-.selected-card-logo {
-  font-size: 26px;
-}
-
-.selected-card-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.selected-card-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.selected-card-industry {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.selected-card-remove {
-  background: none;
+.pagination-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   border: none;
-  font-size: 14px;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 2px 4px;
-  line-height: 1;
-  border-radius: 4px;
-  transition: color 0.15s;
-}
-
-.selected-card-remove:hover {
-  color: var(--color-red-error);
-}
-
-/* 추가 버튼 */
-.add-startup-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
   background: none;
-  border: 1.5px dashed var(--color-gray-300);
-  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-secondary, #9ca3af);
   cursor: pointer;
-  min-width: 160px;
-  transition: border-color 0.15s, color 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
 
-.add-startup-btn:hover {
-  border-color: var(--color-brand-orange);
-  color: var(--color-brand-orange);
+.pagination-btn:hover:not(:disabled) {
+  background: var(--color-black-200, #2a2a2a);
+  color: var(--text-primary, #fff);
 }
 
-.add-startup-btn-icon {
-  font-size: 20px;
-  line-height: 1;
+.pagination-btn--active {
+  background: var(--color-brand-orange);
+  color: #fff;
+}
+
+.pagination-btn--active:hover {
+  background: var(--color-brand-orange);
+  color: #fff;
+}
+
+.pagination-arrow {
+  font-size: 18px;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* 반응형 */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .comparison-page {
     padding: 24px 16px 60px;
   }
 
-  .page-title {
-    font-size: 22px;
-  }
-
-  .selected-card {
-    min-width: 160px;
+  .comparison-title {
+    font-size: 20px;
   }
 }

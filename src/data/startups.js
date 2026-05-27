@@ -15,6 +15,7 @@ export const startups = [
     employeeCount: 3000,
     revenue: 12000,
     description: "모바일 금융 슈퍼앱",
+    mySelectionCount: 9804,
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ export const startups = [
     employeeCount: 850,
     revenue: 4500,
     description: "지역 기반 중고거래 플랫폼",
+    mySelectionCount: 8766,
   },
   {
     id: 3,
@@ -47,6 +49,7 @@ export const startups = [
     employeeCount: 3500,
     revenue: 28000,
     description: "배틀그라운드 개발사",
+    mySelectionCount: 8142,
   },
   {
     id: 4,
@@ -63,6 +66,7 @@ export const startups = [
     employeeCount: 400,
     revenue: 1800,
     description: "인테리어 커머스 플랫폼 오늘의집",
+    mySelectionCount: 7204,
   },
   {
     id: 5,
@@ -79,6 +83,7 @@ export const startups = [
     employeeCount: 1200,
     revenue: 3200,
     description: "부동산 플랫폼",
+    mySelectionCount: 5763,
   },
   {
     id: 6,
@@ -95,6 +100,7 @@ export const startups = [
     employeeCount: 6000,
     revenue: 21000,
     description: "새벽배송 이커머스 마켓컬리",
+    mySelectionCount: 4004,
   },
   {
     id: 7,
@@ -111,6 +117,7 @@ export const startups = [
     employeeCount: 600,
     revenue: 2500,
     description: "웹소설·웹툰 플랫폼",
+    mySelectionCount: 3951,
   },
   {
     id: 8,
@@ -127,6 +134,7 @@ export const startups = [
     employeeCount: 5000,
     revenue: 6000,
     description: "여행 및 숙박 예약 플랫폼",
+    mySelectionCount: 1768,
   },
   {
     id: 9,
@@ -143,6 +151,7 @@ export const startups = [
     employeeCount: 300,
     revenue: 900,
     description: "AI 기반 교육 솔루션",
+    mySelectionCount: 941,
   },
   {
     id: 10,
@@ -159,5 +168,6 @@ export const startups = [
     employeeCount: 2000,
     revenue: 5000,
     description: "기업용 AI·클라우드 서비스",
+    mySelectionCount: 867,
   },
 ];
