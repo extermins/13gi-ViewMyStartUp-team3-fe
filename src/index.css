@@ -42,16 +42,36 @@
   --font-weight-semibold: 600;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
+
+  /* 시맨틱 변수 (비교현황 페이지 다크 테마용) */
+  --bg-page: var(--color-black-300);
+  --bg-card: var(--color-black-100);
+  --bg-card-hover: var(--color-gray-400);
+  --border: var(--color-gray-400);
+  --text-primary: #ffffff;
+  --text-secondary: var(--color-gray-100);
+  --text-muted: var(--color-gray-200);
 }
 
 /* 3. 브라우저 기본 여백 초기화 및 기본 폰트 적용 */
 /* chore: 삭제 및 충돌 우려 리뷰 반영하여 color, background-color 삭제하였습니다. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input {
+  font-family: inherit;
 }
 
 /* 4. 피그마 시안 기준 중앙 정렬 컨테이너 (반응형 적용) */
