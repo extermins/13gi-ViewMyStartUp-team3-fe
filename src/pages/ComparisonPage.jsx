@@ -21,16 +21,27 @@ export default function ComparisonPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    let cancelled = false
     const { sortBy, order } = SORT_PARAM_MAP[sortId]
 
-    setIsLoading(true)
-    getComparisonStats({ page: currentPage, pageSize: PAGE_SIZE, sortBy, order })
-      .then((json) => {
+    async function load() {
+      setIsLoading(true)
+      try {
+        const json = await getComparisonStats({ page: currentPage, pageSize: PAGE_SIZE, sortBy, order })
+        if (cancelled) return
         setData(json.data)
         setTotalPages(json.totalPages)
-      })
-      .catch((err) => console.error('[비교현황] API 오류:', err))
-      .finally(() => setIsLoading(false))
+      } catch (err) {
+        if (cancelled) return
+        console.error('[비교현황] API 오류:', err)
+      } finally {
+        if (!cancelled) setIsLoading(false)
+      }
+    }
+
+    load()
+
+    return () => { cancelled = true }
   }, [sortId, currentPage])
 
   function handleSortSelect(option) {
