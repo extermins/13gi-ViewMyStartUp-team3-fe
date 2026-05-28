@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router";
 import "./App.css";
 import MainLayout from "./components/layout/MainLayout";
 import ComparisonPage from "./pages/ComparisonPage";
+import Mypick from "./pages/Mypick";
 
 function App() {
   return (
