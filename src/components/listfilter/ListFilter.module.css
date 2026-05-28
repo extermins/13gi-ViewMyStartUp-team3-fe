@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #fff;
+  font-family: var(--font-family-main, "Pretendard");
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* 검색창 */
+.searchWrapper {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.searchInput {
+  width: 448px;
+  height: 48px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid var(--gray-gray-200, #747474);
+  background: var(--black-black-400, #131313);
+  color: var(--gray-gray-100, #d8d8d8);
+  font-family: var(--font-family-main, "Pretendard");
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 16px 0 44px;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--gray-gray-100, #d8d8d8);
+}
+
+/* 드롭다운 */
+.dropdownWrapper {
+  position: relative;
+  width: 168px;
+  height: 48px;
+}
+
+.dropdown {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 10px;
+  border: 1px solid var(--gray-gray-200, #747474);
+  background: var(--black-black-400, #131313);
+  color: var(--gray-gray-100, #d8d8d8);
+  font-family: var(--font-family-main, "Pretendard");
+  font-size: 14px;
+  padding: 10px 34px 10px 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.toggleIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+/* 태블릿 반응형 대응 (744px 이하) */
+@media (max-width: 744px) {
+  .searchInput {
+    width: 269px;
+  }
+}
+
+/* 모바일 반응형 대응 (375px 이하) */
+@media (max-width: 375px) {
+  /* 최상단 부모 박스 가로 -> 세로 꺾기 */
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  /* 2. 검색창+드롭다운 그룹 */
+  .filterGroup {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* 검색창 (189x40, 폰트 13px) */
+  .searchWrapper {
+    width: 189px;
+    flex-shrink: 0;
+  }
+
+  .searchInput {
+    width: 100%; /* 부모(189px)를 꽉 채움 */
+    height: 40px; /* 48px -> 40px 변경 */
+    font-size: 13px; /* 14px -> 13px 변경 */
+  }
+
+  /* 검색창 높이가 40px로 줄었으니 돋보기 아이콘도 살짝 위로 이동 */
+  .searchIcon {
+    top: 8px; /* 기존 12px -> 8px로 수정하여 중앙 정렬 */
+  }
+
+  /* 드롭다운 */
+  .dropdownWrapper {
+    width: 146px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .dropdown {
+    font-size: 12px; /* 14px -> 12px 변경 */
+    /* 높이는 이미 부모를 따라 100%로 설정되어 있으므로 알아서 40px */
+  }
+
+  .contentWrapper {
+    padding: 0 16px;
+  }
+}
