@@ -3,10 +3,9 @@ import { NavLink } from "react-router";
 import "./Header.css";
 
 const NAV_ITEMS = [
-  { label: "홈", to: "/" },
-  { label: "스타트업", to: "/startups" },
-  { label: "비교 현황", to: "/comparison" },
-  { label: "투자 현황", to: "/investments" },
+  { label: "기업 비교", to: "/compare" },
+  { label: "비교 현황", to: "/compare/status" },
+  { label: "투자 현황", to: "/investment" },
 ];
 
 export default function Header() {

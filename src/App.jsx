@@ -1,19 +1,23 @@
 import { Routes, Route } from "react-router";
 import "./App.css";
-import Header from "./components/layout/Header";
+import MainLayout from "./components/layout/MainLayout";
 import ComparisonPage from "./pages/ComparisonPage";
 import InvestmentStatusPage from "./pages/InvestmentStatusPage";
+import CompareStatusPage from "./pages/CompareStatusPage";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<ComparisonPage />} />
-        <Route path="/comparison" element={<ComparisonPage />} />
-        <Route path="/investments" element={<InvestmentStatusPage />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route element={<MainLayout />}>
+        {/* <Route path="/" element={} /> */}
+        {/* <Route path="/mypick" element={} /> */}
+        {/* <Route path="/mypick/result" element={} /> */}
+        <Route path="/compare" element={<ComparisonPage />} />
+        <Route path="/compare/status" element={<CompareStatusPage />} />
+        <Route path="/investment" element={<InvestmentStatusPage />} />
+        {/* <Route path="/company/:id" element={} /> */}
+      </Route>
+    </Routes>
   );
 }
 

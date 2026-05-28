@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getInvestmentStats } from '../api/compareApi'
 import { formatAmount } from '../utils/formatNumber'
 import './InvestmentStatusPage.css'
 
@@ -27,26 +28,6 @@ function getPageRange(current, total) {
   return [1, '...', current - 1, current, current + 1, '...', total]
 }
 
-// 투자 현황 데이터 조회 (목 데이터 → 백엔드 연동 시 startupApi.getStartups()로 교체)
-async function fetchInvestmentStats({ page, pageSize, sortBy, order, keyword }) {
-  const { MOCK_INVESTMENTS, INVESTMENT_TOTAL_COUNT } = await import('../mocks/investmentData.js')
-
-  // 검색어 필터링
-  const filtered = keyword
-    ? MOCK_INVESTMENTS.filter((item) => item.name.includes(keyword))
-    : MOCK_INVESTMENTS
-
-  // 정렬
-  const sorted = [...filtered].sort((a, b) =>
-    order === 'desc' ? b[sortBy] - a[sortBy] : a[sortBy] - b[sortBy]
-  )
-
-  const start = (page - 1) * pageSize
-  return {
-    data: sorted.slice(start, start + pageSize),
-    totalCount: keyword ? filtered.length : INVESTMENT_TOTAL_COUNT,
-  }
-}
 
 export default function InvestmentStatusPage() {
   const [investments, setInvestments] = useState([])
@@ -55,9 +36,6 @@ export default function InvestmentStatusPage() {
   const [page, setPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
   const [sortIndex, setSortIndex] = useState(0)
-  const [searchInput, setSearchInput] = useState('')
-  // 실제 검색에 사용되는 키워드 (엔터/버튼 클릭 시에만 반영)
-  const [keyword, setKeyword] = useState('')
 
   const { sortBy, order } = SORT_OPTIONS[sortIndex]
   const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
@@ -69,7 +47,7 @@ export default function InvestmentStatusPage() {
       setIsLoading(true)
       setError('')
       try {
-        const data = await fetchInvestmentStats({ page, pageSize: PAGE_SIZE, sortBy, order, keyword })
+        const data = await getInvestmentStats({ page, pageSize: PAGE_SIZE, sortBy, order })
         if (!cancelled) {
           setInvestments(data.data)
           setTotalCount(data.totalCount)
@@ -83,22 +61,10 @@ export default function InvestmentStatusPage() {
 
     load()
     return () => { cancelled = true }
-  }, [page, sortBy, order, keyword])
+  }, [page, sortBy, order])
 
   function handleSortChange(e) {
     setSortIndex(Number(e.target.value))
-    setPage(1)
-  }
-
-  function handleSearch(e) {
-    e.preventDefault()
-    setKeyword(searchInput.trim())
-    setPage(1)
-  }
-
-  function handleSearchReset() {
-    setSearchInput('')
-    setKeyword('')
     setPage(1)
   }
 
@@ -107,29 +73,6 @@ export default function InvestmentStatusPage() {
       <h1 className="investment-page__title">투자 현황</h1>
 
       <div className="investment-page__controls">
-        {/* 검색 폼 */}
-        <form className="investment-page__search" onSubmit={handleSearch}>
-          <input
-            className="investment-page__search-input"
-            type="text"
-            placeholder="기업명을 검색하세요"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            aria-label="기업명 검색"
-          />
-          {keyword && (
-            <button
-              type="button"
-              className="investment-page__search-reset"
-              onClick={handleSearchReset}
-              aria-label="검색 초기화"
-            >
-              ✕
-            </button>
-          )}
-          <button type="submit" className="investment-page__search-btn">검색</button>
-        </form>
-
         {/* 정렬 선택 */}
         <select
           className="investment-page__sort"
@@ -166,7 +109,7 @@ export default function InvestmentStatusPage() {
             {!isLoading && investments.length === 0 && !error && (
               <tr>
                 <td colSpan={6} className="investment-page__status">
-                  {keyword ? `"${keyword}" 검색 결과가 없습니다.` : '투자 현황 데이터가 없습니다.'}
+                  투자 현황 데이터가 없습니다.
                 </td>
               </tr>
             )}

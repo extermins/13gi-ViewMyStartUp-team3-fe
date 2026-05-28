@@ -14,78 +14,14 @@
   margin-bottom: 24px;
 }
 
-/* ── 컨트롤 영역 (검색 + 정렬) ── */
+/* ── 컨트롤 영역 (정렬) ── */
 .investment-page__controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
   flex-wrap: wrap;
-}
-
-/* 검색 폼 */
-.investment-page__search {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  position: relative;
-}
-
-.investment-page__search-input {
-  width: 260px;
-  height: 40px;
-  padding: 0 36px 0 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px 0 0 8px;
-  color: var(--text-primary);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.15s;
-}
-
-.investment-page__search-input::placeholder {
-  color: var(--text-muted);
-}
-
-.investment-page__search-input:focus {
-  border-color: var(--color-brand-orange);
-}
-
-/* 검색어 초기화 버튼 */
-.investment-page__search-reset {
-  position: absolute;
-  right: 80px;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 12px;
-  padding: 4px;
-  line-height: 1;
-}
-
-.investment-page__search-reset:hover {
-  color: var(--text-primary);
-}
-
-.investment-page__search-btn {
-  height: 40px;
-  padding: 0 16px;
-  background: var(--color-brand-orange);
-  border: 1px solid var(--color-brand-orange);
-  border-radius: 0 8px 8px 0;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.15s;
-}
-
-.investment-page__search-btn:hover {
-  opacity: 0.85;
 }
 
 /* 정렬 드롭다운 */
@@ -294,12 +230,7 @@
   }
 
   .investment-page__controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .investment-page__search-input {
-    width: 100%;
+    justify-content: stretch;
   }
 
   .investment-page__col-desc {
