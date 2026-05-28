@@ -1,40 +1,44 @@
-import React, { useState } from "react";
-import "./Compare.css";
+import { useState } from "react";
+import "./Mypick.css";
 import plusIcon from "../assets/icons/ic-plus.svg";
-import CompareSectionBox from "../components/comparesectionbox/CompareSectionBox";
+import SectionBox from "../components/mypick/SectionBox";
 import Card from "../components/common/card/card";
 import Button from "../components/common/button/button";
+import MypickModal from "../components/mypick/MypickModal";
+import CompareModal from "../components/mypick/CompareModal";
 
 const Compare = () => {
-  const [myCompany, setMyCompany] = useState(
-    () => JSON.parse(localStorage.getItem("myCompany")) || null,
-  );
-  const [compareCompany, setCompareCompany] = useState(
-    () => JSON.parse(localStorage.getItem("compareCompany")) || [],
-  );
+  // 로컬 스토리지 가져오기
+  const getMyCompany = () =>
+    JSON.parse(localStorage.getItem("myCompany")) || null;
+  const getCompareCompany = () =>
+    JSON.parse(localStorage.getItem("compareCompany")) || [];
+
+  const [myCompany, setMyCompany] = useState(getMyCompany);
+  const [compareCompany, setCompareCompany] = useState(getCompareCompany);
   const [isMyModalOpen, setIsMyModalOpen] = useState(false);
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
 
-  // (임시) 나의 기업 로컬 스토리지
+  // 나의 기업 로컬 스토리지 저장하기/삭제하기
   const handleSelectMyCompany = (company) => {
     setMyCompany(company);
     localStorage.setItem("myCompany", JSON.stringify(company));
     setIsMyModalOpen(false);
-  }; // -> 모달 작업 후 연결
+  };
   const handleRemoveMyCompany = () => {
     setMyCompany(null);
     localStorage.removeItem("myCompany");
   };
 
-  // (임시) 비교 기업 로컬 스토리지
+  // 비교 기업 로컬 스토리지 저장하기/삭제하기
   const handleSelectCompareCompany = (company) => {
     const updated = [...compareCompany, company];
     setCompareCompany(updated);
     localStorage.setItem("compareCompany", JSON.stringify(updated));
     setIsCompareModalOpen(false);
-  }; // -> 모달 작업 후 연결
+  };
   const handleRemoveCompareCompany = (id) => {
-    const updated = compareCompany.filter((c) => c.id !== id);
+    const updated = compareCompany.filter((company) => company.id !== id);
     setCompareCompany(updated);
     localStorage.setItem("compareCompany", JSON.stringify(updated));
   };
@@ -59,21 +63,12 @@ const Compare = () => {
             <Button onClick={handleReset}>전체 초기화</Button>
           )}
         </div>
-        <CompareSectionBox variant={myCompany === null ? "empty" : "default"}>
+        <SectionBox variant={myCompany === null ? "empty" : "default"}>
           {myCompany === null ? (
             // 빈케이스
             <button
               className="addButton"
-              onClick={
-                () =>
-                  handleSelectMyCompany({
-                    id: 1,
-                    name: "코드잇",
-                    category: "에듀테크",
-                    imageUrl: "https://picsum.photos/seed/codeit/100",
-                  })
-                // 모달 추가 후 교체 () => setIsMyModalOpen(true)
-              }
+              onClick={() => setIsMyModalOpen(true)}
             >
               <img className="addIcon" src={plusIcon} alt="" />
               <p className="emptyLabel">기업 추가</p>
@@ -95,7 +90,7 @@ const Compare = () => {
               </div>
             </div>
           )}
-        </CompareSectionBox>
+        </SectionBox>
       </section>
 
       {/* 비교 기업 */}
@@ -108,38 +103,12 @@ const Compare = () => {
             </div>
             <Button
               disabled={compareCompany.length >= 5}
-              onClick={
-                () => {
-                  const mocks = [
-                    {
-                      id: 2,
-                      name: "카카오",
-                      category: "IT",
-                      imageUrl: "https://picsum.photos/seed/kakao/100",
-                    },
-                    {
-                      id: 3,
-                      name: "네이버",
-                      category: "IT",
-                      imageUrl: "https://picsum.photos/seed/naver/100",
-                    },
-                    {
-                      id: 4,
-                      name: "토스",
-                      category: "핀테크",
-                      imageUrl: "https://picsum.photos/seed/toss/100",
-                    },
-                  ];
-                  setCompareCompany(mocks);
-                  localStorage.setItem("compareCompany", JSON.stringify(mocks));
-                }
-                // 모달 추가 후 교체 () => setIsCompareModalOpen(true)
-              }
+              onClick={() => setIsCompareModalOpen(true)}
             >
               기업 추가하기
             </Button>
           </div>
-          <CompareSectionBox
+          <SectionBox
             variant={compareCompany.length === 0 ? "empty" : "default"}
           >
             {compareCompany.length === 0 ? (
@@ -161,7 +130,7 @@ const Compare = () => {
                 ))}
               </div>
             )}
-          </CompareSectionBox>
+          </SectionBox>
         </section>
       )}
       <Button
@@ -173,6 +142,12 @@ const Compare = () => {
       >
         기업 비교하기
       </Button>
+
+      {/* 모달 */}
+      {isMyModalOpen && <MypickModal onSelect={handleSelectMyCompany} />}
+      {isCompareModalOpen && (
+        <CompareModal onSelect={handleSelectCompareCompany} />
+      )}
     </div>
   );
 };
