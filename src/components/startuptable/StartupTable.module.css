@@ -1,0 +1,170 @@
+/* src/components/startuptable/StartupTable.module.css */
+
+.tableContainer {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+/* 헤더 (Header) 공통 스타일 */
+.th {
+  box-sizing: border-box;
+  height: 39px;
+  background: var(--color-black-100, #2e2e2e);
+  color: #fff;
+  font-family: var(--font-family-main, "Pretendard");
+  /* 기본(웹, 태블릿) 글씨 크기 14px */
+  font-size: 14px;
+  font-weight: 500;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.thRank {
+  width: 68px;
+  border-radius: 4px 0 0 4px;
+}
+
+.thName {
+  width: 213px;
+}
+
+.thDescription {
+  width: 304px;
+}
+
+.thCategory,
+.thInvestment,
+.thRevenue,
+.thEmployee {
+  width: 153.75px;
+}
+
+.thEmployee {
+  border-radius: 0 4px 4px 0;
+}
+
+/* 데이터 행 (Data Row) 공통 스타일 */
+.td {
+  box-sizing: border-box;
+  height: 64px;
+  vertical-align: middle;
+  color: #d8d8d8;
+  font-family: var(--font-family-main, "Pretendard");
+  /* 기본(웹, 태블릿) 글씨 크기 14px */
+  font-size: 14px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--gray-gray-300, #4b4b4b);
+  background: var(--black-black-200, #212121);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 10위(마지막 줄) 밑줄 깔끔하게 제거 */
+.table tbody tr:last-child .td {
+  border-bottom: none;
+}
+
+/* 데이터 칸별 세부 정렬 및 패딩 */
+.tdRank {
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 0;
+}
+
+.tdName {
+  text-align: left;
+  padding: 0 24px;
+}
+
+.tdDescription {
+  text-align: left;
+  padding: 0 16px;
+}
+
+.tdCategory {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.tdInvestment {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.tdRevenue {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.tdEmployee {
+  text-align: center;
+  padding: 0 16px;
+  border-radius: 0;
+}
+
+/* 덩어리 모서리(Card Radius) 디테일 깎기 */
+.table tbody tr:nth-child(2) .tdRank {
+  border-radius: 4px 0 0 0;
+}
+.table tbody tr:nth-child(2) .tdEmployee {
+  border-radius: 0 4px 0 0;
+}
+
+.table tbody tr:last-child .tdRank {
+  border-radius: 0 0 0 4px;
+}
+.table tbody tr:last-child .tdEmployee {
+  border-radius: 0 0 4px 0;
+}
+
+/* 태블릿 & 모바일 반응형 대응 (744px 이하) */
+@media (max-width: 744px) {
+  /* 순위 숨김 */
+  .thRank,
+  .tdRank {
+    display: none;
+  }
+
+  /* 태블릿/모바일 기준 너비 재설정 */
+  .thName {
+    width: 150px;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .thDescription {
+    width: 180px;
+  }
+
+  .thCategory,
+  .thInvestment,
+  .thRevenue,
+  .thEmployee {
+    width: 91.5px;
+  }
+
+  /* 데이터 행 모서리 깎기 토스 */
+  .table tbody tr:nth-child(2) .tdName {
+    border-radius: 4px 0 0 0;
+  }
+
+  .table tbody tr:last-child .tdName {
+    border-radius: 0 0 0 4px;
+  }
+}
+
+/* 오직 모바일 반응형 대응 (375px 이하) */
+@media (max-width: 375px) {
+  /* 모바일 사이즈에 진입했을 때만 폰트 크기를 13px로 변경 */
+  .th,
+  .td {
+    font-size: 13px;
+  }
+}
