@@ -1,5 +1,4 @@
 // src/components/Pagination/Pagination.jsx
-import React from "react";
 import styles from "./Pagination.module.css";
 
 import ArrowLeftIcon from "../../assets/icons/ic-arrow-left.svg";

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState, useTransition } from 'react'
 import ComparisonTable from '../components/comparison/ComparisonTable'
 import Dropdown from '../components/common/dropdown/dropdown'
 import './ComparisonPage.css'
@@ -18,9 +18,9 @@ export default function ComparisonPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState([])
   const [totalPages, setTotalPages] = useState(1)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
-  useEffect(() => {
+  const fetchComparisonStats = useCallback(() => {
     const { sortBy, order } = SORT_PARAM_MAP[sortId]
     const params = new URLSearchParams({
       sortBy,
@@ -28,17 +28,20 @@ export default function ComparisonPage() {
       page: currentPage,
       pageSize: PAGE_SIZE,
     })
-
-    setIsLoading(true)
     fetch(`/api/comparison-stats?${params}`)
       .then((res) => res.json())
       .then((json) => {
-        setData(json.data)
-        setTotalPages(json.totalPages)
+        startTransition(() => {
+          setData(json.data ?? [])
+          setTotalPages(json.totalPages ?? 1)
+        })
       })
       .catch((err) => console.error('[비교현황] API 오류:', err))
-      .finally(() => setIsLoading(false))
-  }, [sortId, currentPage])
+  }, [sortId, currentPage, startTransition])
+
+  useEffect(() => {
+    fetchComparisonStats()
+  }, [fetchComparisonStats])
 
   function handleSortSelect(option) {
     setSortId(option.id)
@@ -61,7 +64,7 @@ export default function ComparisonPage() {
         </div>
 
         {/* 테이블 */}
-        {isLoading ? (
+        {isPending ? (
           <div className="table-empty">로딩 중...</div>
         ) : (
           <ComparisonTable data={data} />

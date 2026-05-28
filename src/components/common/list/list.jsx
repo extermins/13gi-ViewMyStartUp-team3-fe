@@ -1,5 +1,5 @@
 import styles from "./List.module.css";
-import Button from "../button.jsx";
+import Button from "../button";
 
 const List = ({
   imageUrl,
