@@ -1,37 +1,47 @@
-import { useState } from 'react'
-import { startups } from '../data/startups'
+import { useState, useEffect } from 'react'
 import ComparisonTable from '../components/comparison/ComparisonTable'
 import Dropdown from '../components/common/dropdown/dropdown'
 import './ComparisonPage.css'
 
-const ITEMS_PER_PAGE = 10
-
-// 정렬 옵션 id → 정렬 함수 매핑
-const SORT_FN = {
-  my_selection_desc: (a, b) => b.mySelectionCount - a.mySelectionCount,
-  my_selection_asc: (a, b) => a.mySelectionCount - b.mySelectionCount,
-  actual_investment_desc: (a, b) => b.totalInvestment - a.totalInvestment,
-  actual_investment_asc: (a, b) => a.totalInvestment - b.totalInvestment,
+// 드롭다운 option id → API 쿼리 파라미터 매핑
+const SORT_PARAM_MAP = {
+  my_selection_desc:      { sortBy: 'mypickCount',      order: 'desc' },
+  my_selection_asc:       { sortBy: 'mypickCount',      order: 'asc'  },
+  actual_investment_desc: { sortBy: 'totalInvestment',  order: 'desc' },
+  actual_investment_asc:  { sortBy: 'totalInvestment',  order: 'asc'  },
 }
+
+const PAGE_SIZE = 10
 
 export default function ComparisonPage() {
   const [sortId, setSortId] = useState('my_selection_desc')
   const [currentPage, setCurrentPage] = useState(1)
+  const [data, setData] = useState([])
+  const [totalPages, setTotalPages] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
 
-  // 정렬된 전체 데이터
-  const sorted = [...startups].sort(SORT_FN[sortId] ?? SORT_FN.my_selection_desc)
+  useEffect(() => {
+    const { sortBy, order } = SORT_PARAM_MAP[sortId]
+    const params = new URLSearchParams({
+      sortBy,
+      order,
+      page: currentPage,
+      pageSize: PAGE_SIZE,
+    })
 
-  // 페이지네이션 계산
-  const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE)
-  const paginated = sorted.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  )
-  const startRank = (currentPage - 1) * ITEMS_PER_PAGE + 1
+    setIsLoading(true)
+    fetch(`/api/comparison-stats?${params}`)
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json.data)
+        setTotalPages(json.totalPages)
+      })
+      .catch((err) => console.error('[비교현황] API 오류:', err))
+      .finally(() => setIsLoading(false))
+  }, [sortId, currentPage])
 
   function handleSortSelect(option) {
     setSortId(option.id)
-    // 정렬 변경 시 첫 페이지로 이동
     setCurrentPage(1)
   }
 
@@ -51,7 +61,11 @@ export default function ComparisonPage() {
         </div>
 
         {/* 테이블 */}
-        <ComparisonTable data={paginated} startRank={startRank} />
+        {isLoading ? (
+          <div className="table-empty">로딩 중...</div>
+        ) : (
+          <ComparisonTable data={data} />
+        )}
 
         {/* 페이지네이션 */}
         <div className="pagination">
