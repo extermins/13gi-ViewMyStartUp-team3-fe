@@ -81,3 +81,11 @@
   background-color: #333333;
   font-weight: 700;
 }
+
+.pc.rank {
+  width: 168px;
+}
+
+.mobile.rank {
+  width: 146px;
+}

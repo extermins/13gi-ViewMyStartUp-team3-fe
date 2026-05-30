@@ -24,6 +24,13 @@ const ENTERPRISE_OPTIONS = [
   { id: "actual_investment_asc", label: "실제 누적 투자 금액 낮은순" },
 ];
 
+const RANK_OPTIONS = [
+  { id: "revenue_desc", label: "매출액 높은순" },
+  { id: "revenue_asc", label: "매출액 낮은순" },
+  { id: "headCount_desc", label: "고용 인원 많은순" },
+  { id: "headCount_asc", label: "고용 인원 적은순" },
+];
+
 // 현재 선택된 옵션 id 관리
 export default function DropdownList({
   standard = "pc",
@@ -33,6 +40,7 @@ export default function DropdownList({
   let options = SORT_OPTIONS;
   if (type === "startup") options = STARTUP_OPTIONS;
   if (type === "enterprise") options = ENTERPRISE_OPTIONS;
+  if (type === "rank") options = RANK_OPTIONS;
 
   const [selectedId, setSelectedId] = useState(null);
 

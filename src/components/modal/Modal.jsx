@@ -1,0 +1,17 @@
+import styles from "./Modal.module.css"; // components/common/Modal.jsx
+import close from "../../assets/icons/ic-delete.svg";
+export default function Modal({ isOpen, onClose, title, children }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles["title-wrap"]}>
+          <div className={styles.title}>{title}</div>
+          <img src={close} onClick={onClose}></img>
+        </div>
+        <div className={styles["content"]}>{children}</div>
+      </div>
+    </div>
+  );
+}
