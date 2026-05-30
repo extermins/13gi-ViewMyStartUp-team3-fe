@@ -15,6 +15,13 @@
 .pcContainer.enterprise {
   width: 264px;
 }
+.pcContainer.rank {
+  width: 168px; /* 원하는 너비로 조정 */
+}
+
+.mobileContainer.rank {
+  width: 146px;
+}
 
 .mobileContainer.sort {
   width: 146px;

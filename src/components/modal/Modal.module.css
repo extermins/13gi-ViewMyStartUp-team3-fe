@@ -1,0 +1,40 @@
+/* Modal.module.css */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.modal {
+  background-color: #212121;
+  border-radius: 8px;
+  padding: 24px;
+  /* min-width: 400px; */
+  width: 100%;
+  max-width: 496px;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+.title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.content {
+  margin-top: 24px;
+}

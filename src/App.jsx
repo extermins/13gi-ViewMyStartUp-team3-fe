@@ -4,13 +4,14 @@ import MainLayout from "./components/layout/MainLayout";
 import ComparisonPage from "./pages/ComparisonPage";
 import Mypick from "./pages/Mypick";
 import CompareResult from "./pages/compareresult/CompareResult";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<MainLayout />}>
-          {/* <Route path="/" element={} /> */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/mypick" element={<Mypick />} />
           <Route path="/mypick/result" element={<CompareResult />} />
           <Route path="/compare" element={<ComparisonPage />} />
