@@ -1,6 +1,6 @@
 import './ComparisonTable.css'
 
-export default function ComparisonTable({ data, startRank }) {
+export default function ComparisonTable({ data }) {
   if (!data || data.length === 0) {
     return (
       <div className="table-empty">
@@ -22,24 +22,32 @@ export default function ComparisonTable({ data, startRank }) {
           </tr>
         </thead>
         <tbody>
-          {data.map((startup, index) => (
+          {data.map((startup) => (
             <tr key={startup.id}>
-              <td className="col-rank">{startRank + index}위</td>
+              <td className="col-rank">{startup.rank}위</td>
               <td className="col-name">
                 <div className="startup-name-cell">
-                  <span className="startup-logo">{startup.logo}</span>
+                  {startup.imageUrl ? (
+                    <img
+                      src={startup.imageUrl}
+                      alt={startup.name}
+                      className="startup-logo-img"
+                    />
+                  ) : (
+                    <div className="startup-logo-placeholder" />
+                  )}
                   <div className="startup-name-info">
                     <span className="startup-name">{startup.name}</span>
-                    <span className="startup-category-sub">{startup.industry}</span>
+                    <span className="startup-category-sub">{startup.category}</span>
                   </div>
                 </div>
               </td>
               <td className="col-desc">
                 <span className="startup-desc">{startup.description}</span>
               </td>
-              <td className="col-category">{startup.industry}</td>
+              <td className="col-category">{startup.category}</td>
               <td className="col-count">
-                {startup.mySelectionCount.toLocaleString()}
+                {startup.mypickCount.toLocaleString()}
               </td>
             </tr>
           ))}

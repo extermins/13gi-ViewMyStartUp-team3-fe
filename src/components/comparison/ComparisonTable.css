@@ -68,8 +68,19 @@
   gap: 10px;
 }
 
-.startup-logo {
-  font-size: 28px;
+.startup-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.startup-logo-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--color-black-200, #2a2a2a);
   flex-shrink: 0;
 }
 
