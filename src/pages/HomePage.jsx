@@ -1,3 +1,4 @@
+// src/pages/HomePage.jsx
 import React, { useState, useEffect } from "react";
 import ListFilter from "../components/ListFilter/ListFilter";
 import StartupTable from "../components/StartupTable/StartupTable";

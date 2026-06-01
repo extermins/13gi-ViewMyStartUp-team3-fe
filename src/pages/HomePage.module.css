@@ -1,3 +1,5 @@
+/* src/pages/HomePage.module.css */
+
 .pageBackground {
   width: 100%;
   min-height: calc(100vh - 60px); /* GNB 높이를 뺀 나머지 꽉 채우기 */
@@ -11,8 +13,24 @@
 .contentWrapper {
   width: 100%;
   max-width: 1200px;
-  padding: 24px;
+  /* 기존 padding: 24px 제거! PC(1920)에서는 1200px 꽉 채워서 헤더 로고와 맞춤 */
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* 태블릿 반응형 (744px 이하) */
+@media (max-width: 744px) {
+  .contentWrapper {
+    /* 화면이 좁아지면 양옆 벽에 내용물이 붙지 않게 패딩 처리 */
+    padding: 0 24px;
+  }
+}
+
+/* 모바일 반응형 (375px 이하) */
+@media (max-width: 375px) {
+  .contentWrapper {
+    padding: 0 16px;
+  }
 }
