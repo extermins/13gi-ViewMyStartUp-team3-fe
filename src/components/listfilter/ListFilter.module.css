@@ -1,0 +1,60 @@
+/* src/components/listfilter/ListFilter.module.css */
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 40px 0 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #fff;
+  font-family: var(--font-family-main, "Pretendard");
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center; /* flex-start에서 center로 변경해 검색창과 드롭다운 높이를 맞춤 */
+  gap: 16px;
+}
+
+.searchWrapper {
+  width: 448px;
+}
+
+/* 태블릿 반응형 (744px 이하) */
+@media (max-width: 744px) {
+  .searchWrapper {
+    width: 269px;
+  }
+}
+
+/* 모바일 반응형 (375px 이하) */
+@media (max-width: 375px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .filterGroup {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .searchWrapper {
+    width: 189px;
+    flex-shrink: 0;
+  }
+}

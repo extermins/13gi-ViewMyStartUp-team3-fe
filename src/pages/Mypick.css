@@ -1,0 +1,117 @@
+.CompareLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 80px 174px 0;
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: var(--color-black-400);
+}
+.selectContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}
+.textContainer {
+  display: flex;
+  align-items: center;
+}
+.selectTitle {
+  color: white;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+}
+.selectSubtle {
+  padding-left: 8px;
+  color: white;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+}
+.addButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.addIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: var(--color-gray-100);
+}
+.emptyLabel {
+  padding-top: 16px;
+  color: white;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+}
+.emptyMessage {
+  color: var(--color-gray-200);
+  text-align: center;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+}
+.textButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: none;
+  border: none;
+  color: var(--color-gray-100);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.cardList {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.cardImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 375px) {
+  .cardImage {
+    width: 64px;
+    height: 64px;
+  }
+}
+.cardTitle {
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+}
+@media (max-width: 375px) {
+  .cardTitle {
+    font-size: var(--font-size-14);
+  }
+}
+.cardSubtle {
+  padding-top: 4px;
+  color: var(--color-gray-200);
+  text-align: center;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+}
+@media (max-width: 375px) {
+  .cardSubtle {
+    font-size: var(--font-size-12);
+  }
+}

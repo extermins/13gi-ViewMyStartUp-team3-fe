@@ -1,0 +1,70 @@
+.wrapper {
+  width: 100%;
+  max-width: 448px;
+  position: relative;
+}
+.input {
+  width: 100%;
+  max-width: 448px;
+  height: 48px;
+  padding: 12px 12px 12px 44px;
+  color: #fff;
+  box-sizing: border-box;
+
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid var(--gray-gray_200, #747474);
+  background: #212121;
+}
+.icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+}
+.close-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #747474;
+}
+
+.wrapper:focus-within .input {
+  padding: 12px 44px 12px 12px;
+}
+
+.wrapper:focus-within .icon {
+  left: auto;
+  right: 12px;
+}
+.input-date {
+  padding: 12px 44px 12px 12px;
+}
+
+.icon-data {
+  left: auto;
+  right: 12px;
+}
+
+@media (max-width: 744px) {
+  .input {
+    height: 40px;
+    padding: 8px 12px 8px 44px;
+  }
+  .input-date {
+    padding: 12px 44px 12px 12px;
+  }
+}

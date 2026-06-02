@@ -1,0 +1,68 @@
+.header-inner {
+  /*현재 PC 최대 가로폭이 1200px로 설정되어 있어서
+position,left,transform의 내용은 width을 꽉 채우려고 이렇게 설정해뒀습니다.*/
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100vw;
+  height: 60px;
+
+  border-bottom: 1px solid var(--color-black-100, #2e2e2e);
+  background: var(--color-black-400, #131313);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 360px;
+  gap: 40px;
+
+  height: 100%;
+}
+
+.nav-text {
+  padding: 21px 17px;
+
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+
+  color: var(--color-gray_200, #747474);
+}
+
+.active {
+  font-weight: 700;
+  color: #fff;
+}
+
+/*태블릿 사이즈*/
+@media (max-width: 744px) {
+  .nav-inner {
+    padding-left: 24px;
+    gap: 24px;
+  }
+}
+
+/*모바일 사이즈*/
+@media (max-width: 375px) {
+  .nav-inner {
+    padding-left: 16px;
+    gap: 16px;
+  }
+
+  .nav-text {
+    padding: 21px 8px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .active {
+    font-size: 12px;
+  }
+}
