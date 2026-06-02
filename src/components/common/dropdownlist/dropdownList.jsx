@@ -46,10 +46,8 @@ export default function DropdownList({ type = "sort", onSelect }) {
       onSelect(option);
     }
   };
-  // standard 값에 따라 리스트 스타일 나누기 (PC, mobile)
-  const listClassName = `${styles.dropdownList} ${styles[type] || ""}`;
 
-  // standard 값에 따라 내부 아이템 스타일 나누기
+  const listClassName = `${styles.dropdownList} ${styles[type] || ""}`;
 
   return (
     <ul className={listClassName}>
