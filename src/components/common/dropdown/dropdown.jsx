@@ -9,7 +9,7 @@ const DEFAULT_LABELS = {
   enterprise: "나의 기업 선택 횟수 높은순",
 };
 
-export default function Dropdown({ standard = "pc", type = "sort", onSelect }) {
+export default function Dropdown({ type = "sort", onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
   const [userSelectedLabel, setUserSelectedLabel] = useState(null);
   const [prevType, setPrevType] = useState(type);
@@ -29,11 +29,7 @@ export default function Dropdown({ standard = "pc", type = "sort", onSelect }) {
     if (onSelect) onSelect(option);
   };
 
-  const isMobile = standard === "mobile";
-  const containerClassName = `${styles.dropdownContainer} ${
-    isMobile ? styles.mobileContainer : styles.pcContainer
-  } ${styles[type] || ""}`;
-
+  const containerClassName = `${styles.dropdownContainer} ${styles[type] || ""}`;
   const triggerClassName = `${styles.dropdownTrigger} ${isOpen ? styles.activeTrigger : ""}`;
 
   return (
@@ -58,11 +54,7 @@ export default function Dropdown({ standard = "pc", type = "sort", onSelect }) {
 
       {isOpen && (
         <div className={styles.listWrapper}>
-          <DropdownList
-            standard={standard}
-            type={type}
-            onSelect={handleSelect}
-          />
+          <DropdownList type={type} onSelect={handleSelect} />
         </div>
       )}
     </div>
