@@ -7,6 +7,7 @@ const DEFAULT_LABELS = {
   sort: "누적 투자금액 높은순",
   startup: "View My Startup 투자 금액 높은순",
   enterprise: "나의 기업 선택 횟수 높은순",
+  rank: "매출액 높은순",
 };
 
 export default function Dropdown({ standard = "pc", type = "sort", onSelect }) {

@@ -12,10 +12,34 @@ body {
   margin-top: 40px;
 }
 .section-title {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   /* fontfontfontfont */
 }
+.button {
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
 .field {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--black-black_300, #212121);
+  border-radius: 4px;
+}
+.card-wrapper {
   margin-top: 16px;
+  width: 100%;
 }
 .card {
   display: flex;
@@ -24,79 +48,195 @@ body {
   align-items: center;
 }
 .card-img {
-  width: 80px;
-  height: 80px;
+  width: 81.23px;
+  height: 81.23px;
   border-radius: 50%;
-  border: 1px solid #fff;
 }
 .card-name {
   margin-top: 10px;
   /* fontfontfont */
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
-.card-des {
+.card-category {
   margin-top: 4px;
+  color: var(--gray-gray_200, #747474);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   /* fontfontfont */
 }
-.section-title-wrap {
+
+/* ------------------------------------------------------------------- */
+
+.grid-template-v1 {
+  display: grid;
+  grid-template-columns: 17.75% 25.3% repeat(4, 14.2375%);
+  background-color: #2e2e2e;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.grid-template-v1 > div {
+  height: 39px;
+  padding: 10px 0px;
+  white-space: nowrap;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
-/* 테이블 1 */
-.table {
-  table-layout: fixed;
-  width: 100%;
+.grid-template-v1-field {
   margin-top: 16px;
-  border-style: hidden !important;
-}
-.col1 {
-  width: 17.75%;
-}
-.col2 {
-  width: 25.3%;
-}
-.col3 {
-  width: 14.229%;
-}
-.thead {
-  border-radius: 4px;
-}
-.tbody {
-  margin-top: 30px;
-}
-th {
-  height: 48px;
-  padding: 10px auto;
-  text-align: center;
-  vertical-align: middle;
-  background: var(--black-black_100, #2e2e2e);
-  border: none;
-}
-td {
-  border: none;
-}
-.highlight {
-  background: var(--black-black_100, #2e2e2e);
-}
-.normal {
-  background: var(--black-black_100, #212121);
-}
-.td {
-  padding: 11px 24px;
-  height: 64px;
+  display: grid;
+  grid-template-columns: 17.75% 25.3% repeat(4, 14.2375%);
+  color: #d8d8d8;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.td2 {
+.grid-template-v1-field-active {
+  background-color: #2e2e2e;
+}
+
+.grid-template-v1-field > div {
   padding: 15px 16px;
-  vertical-align: middle;
-  height: 64px;
-  max-height: 64px; /* 추가 */
 }
 
-.word {
+.description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-top: 0px;
+}
+.company-name-wrapper {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  min-width: 0;
+}
+.company-name {
+  display: -webkit-box;
+  width: 100%;
+  min-width: 0;
+  margin-left: 12px;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.company-name-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.font-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----------------------------------------------v2 */
+
+.grid-template-v2 {
+  display: grid;
+  grid-template-columns: 5.667fr 17.75fr 25.333fr repeat(4, 12.8125fr);
+  background-color: #2e2e2e;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.grid-template-v2 > div {
+  height: 39px;
+  padding: 10px 0px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid-template-v2-field {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 5.667fr 17.75fr 25.333fr repeat(4, 12.8125fr);
+  color: #d8d8d8;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.grid-template-v2-field-active {
+  background-color: #2e2e2e;
+}
+
+.grid-template-v2-field > div {
+  padding: 15px 16px;
+}
+.investment {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 108px 0;
+}
+
+.input-wrap {
+  margin-top: 24px;
+}
+.label {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.input {
+  margin-top: 16px;
+}
+.button-wrap {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 24px;
+}
+.modal-company-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+.modal-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.company-names {
+  margin-left: 12px;
+}
+.company-category {
+  margin-left: 8px;
+  color: var(--gray-gray_200, #747474);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.button-cancel {
+  width: 194px;
+}
+.button-ok {
+  width: 183px;
+}
+.create-res {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

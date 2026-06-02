@@ -1,34 +1,47 @@
-import React from "react";
+// src/components/listfilter/ListFilter.jsx
+import React, { useState, useEffect } from "react";
 import styles from "./ListFilter.module.css";
-import SearchIcon from "../../assets/icons/ic-search.svg";
-import ToggleIcon from "../../assets/icons/ic-toggle.svg";
+import { Search } from "../common/searchfield/Search.jsx";
+import Dropdown from "../common/dropdown/dropdown.jsx";
 
 function ListFilter() {
+  const [keyword, setKeyword] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 375);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 375);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleSearch = () => {
+    console.log("검색어:", keyword);
+  };
+
+  const handleSort = (option) => {
+    console.log("선택된 정렬:", option.id);
+  };
+
   return (
     <div className={styles.container}>
-      {/* 좌측 타이틀 */}
       <h2 className={styles.title}>전체 스타트업 목록</h2>
 
-      {/* 우측 검색 & 드롭다운 */}
       <div className={styles.filterGroup}>
-        {/* 검색창 */}
         <div className={styles.searchWrapper}>
-          <img src={SearchIcon} alt="검색" className={styles.searchIcon} />
-          <input
-            type="text"
+          <Search
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
             placeholder="검색어를 입력해주세요"
-            className={styles.searchInput}
+            onSearch={handleSearch}
+            onClear={() => setKeyword("")}
           />
         </div>
 
-        {/* 정렬 드롭다운 */}
-        <div className={styles.dropdownWrapper}>
-          <select className={styles.dropdown}>
-            <option value="revenue-high">매출액 높은 순</option>
-            <option value="revenue-low">매출액 낮은 순</option>
-          </select>
-          <img src={ToggleIcon} alt="토글" className={styles.toggleIcon} />
-        </div>
+        <Dropdown
+          standard={isMobile ? "mobile" : "pc"}
+          type="sort"
+          onSelect={handleSort}
+        />
       </div>
     </div>
   );

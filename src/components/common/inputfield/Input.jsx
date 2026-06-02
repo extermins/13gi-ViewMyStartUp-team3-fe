@@ -20,6 +20,23 @@ export function Input({ value, onChange, placeholder, error }) {
   );
 }
 
+export function TextArea({ value, onChange, placeholder, error }) {
+  return (
+    <div>
+      <textarea
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={[
+          styles["textarea"],
+          error ? styles["input-error"] : "",
+        ].join(" ")}
+      />
+      {error && <p className={styles.error}>{error}</p>}
+    </div>
+  );
+}
+
 export function PasswordInput({ onChange, placeholder, value, error }) {
   const [show, setShow] = useState(false);
 
