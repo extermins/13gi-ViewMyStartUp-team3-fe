@@ -10,34 +10,18 @@
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* PC + sort 일 때 */
-.pc.sort {
+/* PC 기준 가로 너비 설정 */
+.dropdownList.sort {
   width: 168px;
 }
-
-/* PC + startup 일 때 */
-.pc.startup {
+.dropdownList.startup {
   width: 264px;
 }
-
-/* PC + enterprise 일 때 */
-.pc.enterprise {
+.dropdownList.enterprise {
   width: 264px;
 }
-
-/* mobile 모드 길이 */
-.mobile.sort {
-  width: 146px;
-}
-
-/* mobile + startup 일 때 */
-.mobile.startup {
-  width: 241px;
-}
-
-/* mobile + enterprise 일 때 */
-.mobile.enterprise {
-  width: 241px;
+.dropdownList.rank {
+  width: 168px;
 }
 
 /* 드롭 다운 아이템 */
@@ -50,25 +34,15 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   border-bottom: 1px solid var(--color-gray-200);
-}
 
-/* 마지막 아이템은 밑줄 제거 */
-.dropdownItem:last-child {
-  border-bottom: none;
-}
-
-/* PC 모드 아이템 폰트 */
-.pcItem {
   font-size: 14px;
   font-weight: 400;
   height: 40px;
 }
 
-/* mobile 모드 아이템 폰트 */
-.mobileItem {
-  font-size: 12px;
-  font-weight: 400;
-  height: 38px;
+/* 마지막 아이템은 밑줄 제거 */
+.dropdownItem:last-child {
+  border-bottom: none;
 }
 
 /* 마우스를 올렸을 때 효과 */
@@ -82,10 +56,24 @@
   font-weight: 700;
 }
 
-.pc.rank {
-  width: 168px;
-}
+/* 모바일 기준 화면 크기가 375px 이하일 때 적용되는 스타일 */
+@media (max-width: 375px) {
+  .dropdownList.sort {
+    width: 146px;
+  }
+  .dropdownList.startup {
+    width: 241px;
+  }
+  .dropdownList.enterprise {
+    width: 241px;
+  }
+  .dropdownList.rank {
+    width: 146px;
+  }
 
-.mobile.rank {
-  width: 146px;
+  /* 모바일 모드 아이템 높이 및 폰트 축소 */
+  .dropdownItem {
+    font-size: 12px;
+    height: 38px;
+  }
 }

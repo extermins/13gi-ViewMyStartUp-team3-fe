@@ -32,11 +32,7 @@ const RANK_OPTIONS = [
 ];
 
 // 현재 선택된 옵션 id 관리
-export default function DropdownList({
-  standard = "pc",
-  type = "sort",
-  onSelect,
-}) {
+export default function DropdownList({ type = "sort", onSelect }) {
   let options = SORT_OPTIONS;
   if (type === "startup") options = STARTUP_OPTIONS;
   if (type === "enterprise") options = ENTERPRISE_OPTIONS;
@@ -50,19 +46,13 @@ export default function DropdownList({
       onSelect(option);
     }
   };
-  // standard 값에 따라 리스트 스타일 나누기 (PC, mobile)
-  const listClassName = `${styles.dropdownList} ${
-    standard === "mobile" ? styles.mobile : styles.pc
-  } ${styles[type]}`;
 
-  // standard 값에 따라 내부 아이템 스타일 나누기
-  const itemSizeClassName =
-    standard === "mobile" ? styles.mobileItem : styles.pcItem;
+  const listClassName = `${styles.dropdownList} ${styles[type] || ""}`;
 
   return (
     <ul className={listClassName}>
       {options.map((option) => {
-        const itemClassName = `${styles.dropdownItem} ${itemSizeClassName} ${selectedId === option.id ? styles.isSelected : ""}`;
+        const itemClassName = `${styles.dropdownItem} ${selectedId === option.id ? styles.isSelected : ""}`;
 
         return (
           <li
