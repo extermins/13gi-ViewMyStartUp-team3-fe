@@ -14,12 +14,8 @@
 .dropdownContainer.enterprise {
   width: 264px;
 }
-.pcContainer.rank {
+.dropdownContainer.rank {
   width: 168px; /* 원하는 너비로 조정 */
-}
-
-.mobileContainer.rank {
-  width: 146px;
 }
 
 .dropdownTrigger {
@@ -96,6 +92,9 @@
   }
   .dropdownContainer.enterprise {
     width: 241px;
+  }
+  .dropdownContainer.rank {
+    width: 146px;
   }
 
   /* 모바일 버튼 패딩, 높이, 폰트 축소 */
