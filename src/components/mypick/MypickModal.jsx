@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "./Modal.module.css";
+import styles from "./MypickModal.module.css";
 import List from "../common/list/list";
 import { Search } from "../common/searchfield/Search";
 import closeIcon from "../../assets/icons/ic-delete.svg";
@@ -26,7 +26,7 @@ const MypickModal = ({ onSelect }) => {
         }
         setIsLoading(true);
         const res = await fetch(
-          `http://localhost:3000/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
+          `http://localhost:3000/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
         );
         const data = await res.json();
         setCompanies(data.data);
@@ -40,14 +40,19 @@ const MypickModal = ({ onSelect }) => {
     companyData();
   }, [search, page]);
 
+  // 최근 선택한 기업
   const session = () => {
     const companies = JSON.parse(sessionStorage.getItem("myCompany"));
+
+    // 선택한 기업 없음
     if (!companies)
       return (
-        <div className={styles.sessionEmptyContainer}>
-          <p className={styles.empty}>최근 선택한 기업이 없어요</p>
+        <div className={styles.sessionMessageContainer}>
+          <p className={styles.message}>최근 선택한 기업이 없어요</p>
         </div>
       );
+
+    // 선택한 기업 있음
     return (
       <div className={styles.resultList}>
         {companies.map((company) => (
@@ -68,37 +73,60 @@ const MypickModal = ({ onSelect }) => {
     );
   };
 
+  // 검색 결과
   const result = () => {
+    // 검색한 후 로딩
     if (isLoading)
       return (
-        <div className={styles.emptyContainer}>
-          <p className={styles.empty}>로딩 중...</p>
+        <div className={styles.resultMessageContainer}>
+          <p className={styles.message}>로딩 중...</p>
         </div>
       );
+
+    // 검색한 후 결과 없음
     if (search && companies.length === 0)
       return (
-        <div className={styles.emptyContainer}>
-          <p className={styles.empty}>
-            검색 결과가 없어요
-            <br />
-            다시 검색해보세요
-          </p>
+        <div className={styles.resultList}>
+          <div className={styles.resultMessageContainer}>
+            <p className={styles.message}>
+              검색 결과가 없어요
+              <br />
+              다시 검색해보세요
+            </p>
+          </div>
         </div>
       );
-    return companies.map((company) => (
-      <List
-        key={company.id}
-        imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
-        title={company.name}
-        subtle={company.category}
-        label="선택하기"
-        onSelect={() => {
-          onSelect(company);
-        }}
-        buttonVariant="outline"
-        buttonRadius="square"
-      />
-    ));
+
+    // 검색 결과 있음
+    return (
+      <>
+        <div className={styles.resultList}>
+          {companies.map((company) => (
+            <List
+              key={company.id}
+              imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
+              title={company.name}
+              subtle={company.category}
+              label="선택하기"
+              onSelect={() => {
+                onSelect(company);
+              }}
+              buttonVariant="outline"
+              buttonRadius="square"
+            />
+          ))}
+        </div>
+        <div className={styles.pagination}>
+          {companies.length >= 1 && (
+            <Pagination
+              currentPage={page}
+              totalPages={Math.ceil(total / limit)}
+              onPageChange={setPage}
+            />
+          )}
+        </div>
+      </>
+    );
   };
 
   return (
@@ -108,6 +136,7 @@ const MypickModal = ({ onSelect }) => {
           <p className={styles.title}>나의 기업 선택하기</p>
           <img className={styles.image} src={closeIcon} />
         </div>
+
         <Search
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
@@ -117,23 +146,17 @@ const MypickModal = ({ onSelect }) => {
           onSearch={() => setSearch(searchText)}
           placeholder="기업 이름을 입력해주세요"
         ></Search>
+
         <div className={styles.section}>
-          <p className={styles.title}>최근 선택된 기업</p>
+          <p className={styles.subtle}>최근 선택된 기업</p>
           {session()}
         </div>
+
+        {/* 검색 결과 있는 경우에만 검색 결과 제공 */}
         {search && (
           <div className={styles.section}>
-            <p className={styles.title}>검색 결과</p>
-            <div className={styles.result}>
-              <div className={styles.resultList}>{result()}</div>
-              {companies.length >= 1 && (
-                <Pagination
-                  currentPage={page}
-                  totalPages={Math.ceil(total / limit)}
-                  onPageChange={setPage}
-                />
-              )}
-            </div>
+            <p className={styles.subtle}>검색 결과</p>
+            {result()}
           </div>
         )}
       </div>
