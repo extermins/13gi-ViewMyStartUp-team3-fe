@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import List from "../common/list/list";
+import List from "../common/list/List";
 import styles from "./Modal.module.css";
 
 const MypickModal = ({ onSelect }) => {

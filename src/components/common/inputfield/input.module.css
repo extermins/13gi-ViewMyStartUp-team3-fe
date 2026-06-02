@@ -9,7 +9,9 @@
 
   outline: none;
   border-radius: 10px;
+  background-color: transparent;
   border: 1px solid var(--gray-gray_200, #747474);
+  color: #fff;
 }
 .input-text:focus {
   color: #fff;
@@ -47,5 +49,20 @@
   color: #c41013;
 }
 .input-error {
-  border-color: #c41013;
+  border-color: #c41013 !important;
+}
+
+.textarea {
+  width: 100%;
+  height: 108px;
+  max-width: 448px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  align-items: center;
+
+  outline: none;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid var(--gray-gray_200, #747474);
+  color: #fff;
 }

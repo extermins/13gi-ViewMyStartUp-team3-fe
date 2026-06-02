@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { startups } from "../../data/startups";
 import "./StartupSelectorModal.css";
 

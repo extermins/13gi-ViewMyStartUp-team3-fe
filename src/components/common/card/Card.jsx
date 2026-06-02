@@ -1,5 +1,5 @@
 import icon from "../../../assets/icons/ic-minus.svg";
-import styles from "./card.module.css";
+import styles from "./Card.module.css";
 
 const Card = ({ imageUrl, title, subtle, onRemove }) => {
   return (
