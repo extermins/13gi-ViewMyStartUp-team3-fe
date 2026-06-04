@@ -10,7 +10,6 @@ const CompareModal = ({ onClose }) => {
   const [selectedCompanies, setSelectedCompanies] = useState(
     () => JSON.parse(sessionStorage.getItem("compareCompany")) || [],
   );
-  const [error, setError] = useState(null);
   // 검색
   const [searchText, setSearchText] = useState("");
   const [search, setSearch] = useState("");
@@ -31,11 +30,14 @@ const CompareModal = ({ onClose }) => {
         const res = await fetch(
           `http://localhost:3000/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
         );
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const data = await res.json();
         setCompanies(data.data);
         setTotal(data.total);
       } catch (err) {
-        setError(err.message);
+        console.error("기업 목록 조회 실패:", err);
       } finally {
         setIsLoading(false);
       }
@@ -71,7 +73,7 @@ const CompareModal = ({ onClose }) => {
         {selectedCompanies.map((company) => (
           <List
             key={company.id}
-            imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
+            imageUrl={company.imageUrl || "https://placehold.co/80x80"}
             title={company.name}
             subtle={company.category}
             label="선택 해제"
@@ -112,22 +114,25 @@ const CompareModal = ({ onClose }) => {
         <>
           <div className={styles.resultList}>
             {companies.map((company) => {
+              // 선택한 기업 리스트
               const isSelected = selectedCompanies.some(
                 (selectedCompany) => selectedCompany.id === company.id,
               );
+              // 최대 5개 제한
+              const isFull = selectedCompanies.length >= 5;
               return (
                 <List
                   key={company.id}
-                  imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
+                  imageUrl={company.imageUrl || "https://placehold.co/80x80"}
                   title={company.name}
                   subtle={company.category}
                   label={isSelected ? "선택완료" : "선택하기"}
                   onSelect={() =>
-                    !isSelected && handleAddSelectCompany(company)
+                    !isSelected && !isFull && handleAddSelectCompany(company)
                   }
                   buttonVariant={isSelected ? "secondary" : "outline"}
                   buttonRadius="square"
-                  disabled={isSelected ? true : false}
+                  disabled={isSelected || (isFull && !isSelected)}
                 />
               );
             })}
@@ -138,6 +143,11 @@ const CompareModal = ({ onClose }) => {
                 currentPage={page}
                 totalPages={Math.ceil(total / limit)}
                 onPageChange={setPage}
+                style={{
+                  backgroundColor: "transparent",
+                  paddingTop: "0",
+                  paddingBottom: "0",
+                }}
               />
             )}
           </div>
@@ -175,15 +185,17 @@ const CompareModal = ({ onClose }) => {
         ></Search>
 
         <div className={styles.selectSection}>
-          <div className="textContainer">
+          <div className={styles.textContainer}>
             <p className={styles.subtle}>선택한 기업</p>
-            <span className="selectSubtle">(최대 5개)</span>
+            <span className={styles.selectSubtle}>(최대 5개)</span>
           </div>
           {select()}
         </div>
 
         <div className={styles.resultSection}>
-          <p className={styles.subtle}>검색 결과</p>
+          <p className={styles.subtle}>
+            검색 결과 {search.length > 0 && `(${total})`}
+          </p>
           {result()}
         </div>
       </div>

@@ -7,7 +7,6 @@ import Pagination from "../pagination/Pagination";
 
 const MypickModal = ({ onSelect, onClose }) => {
   const [companies, setCompanies] = useState([]);
-  const [error, setError] = useState(null);
   // 검색
   const [searchText, setSearchText] = useState("");
   const [search, setSearch] = useState("");
@@ -28,11 +27,14 @@ const MypickModal = ({ onSelect, onClose }) => {
         const res = await fetch(
           `http://localhost:3000/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
         );
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const data = await res.json();
         setCompanies(data.data);
         setTotal(data.total);
       } catch (err) {
-        setError(err.message);
+        console.error("기업 목록 조회 실패:", err);
       } finally {
         setIsLoading(false);
       }
@@ -42,10 +44,9 @@ const MypickModal = ({ onSelect, onClose }) => {
 
   // 최근 선택한 기업
   const session = () => {
-    const companies =
-      JSON.parse(sessionStorage.getItem("recentCompanies")) || [];
+    const companies = JSON.parse(localStorage.getItem("recentCompanies")) || [];
     // 선택한 기업 없음
-    if (!companies)
+    if (companies.length === 0)
       return (
         <div className={styles.sessionMessageContainer}>
           <p className={styles.message}>최근 선택한 기업이 없어요</p>
@@ -122,6 +123,11 @@ const MypickModal = ({ onSelect, onClose }) => {
               currentPage={page}
               totalPages={Math.ceil(total / limit)}
               onPageChange={setPage}
+              style={{
+                backgroundColor: "transparent",
+                paddingTop: "0",
+                paddingBottom: "0",
+              }}
             />
           )}
         </div>
@@ -155,7 +161,9 @@ const MypickModal = ({ onSelect, onClose }) => {
         {/* 검색 결과 있는 경우에만 검색 결과 제공 */}
         {search && (
           <div className={styles.resultSection}>
-            <p className={styles.subtle}>검색 결과</p>
+            <p className={styles.subtle}>
+              검색 결과 {search.length > 0 && `(${total})`}
+            </p>
             {result()}
           </div>
         )}
