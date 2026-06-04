@@ -5,7 +5,7 @@ import { Search } from "../common/searchfield/Search";
 import closeIcon from "../../assets/icons/ic-delete.svg";
 import Pagination from "../pagination/Pagination";
 
-const MypickModal = ({ onSelect }) => {
+const MypickModal = ({ onSelect, onClose }) => {
   const [companies, setCompanies] = useState([]);
   const [error, setError] = useState(null);
   // 검색
@@ -42,8 +42,8 @@ const MypickModal = ({ onSelect }) => {
 
   // 최근 선택한 기업
   const session = () => {
-    const companies = JSON.parse(sessionStorage.getItem("myCompany"));
-
+    const companies =
+      JSON.parse(sessionStorage.getItem("recentCompanies")) || [];
     // 선택한 기업 없음
     if (!companies)
       return (
@@ -54,11 +54,11 @@ const MypickModal = ({ onSelect }) => {
 
     // 선택한 기업 있음
     return (
-      <div className={styles.resultList}>
+      <div className={styles.sessionList}>
         {companies.map((company) => (
           <List
             key={company.id}
-            imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
+            imageUrl={company.imageUrl || "https://placehold.co/80x80"}
             title={company.name}
             subtle={company.category}
             label="선택하기"
@@ -104,7 +104,7 @@ const MypickModal = ({ onSelect }) => {
           {companies.map((company) => (
             <List
               key={company.id}
-              imageUrl={company.imageUrl ?? "https://placehold.co/80x80"}
+              imageUrl={company.imageUrl || "https://placehold.co/80x80"}
               title={company.name}
               subtle={company.category}
               label="선택하기"
@@ -134,7 +134,7 @@ const MypickModal = ({ onSelect }) => {
       <div className={styles.container}>
         <div className={styles.titleContainer}>
           <p className={styles.title}>나의 기업 선택하기</p>
-          <img className={styles.image} src={closeIcon} />
+          <img className={styles.image} src={closeIcon} onClick={onClose} />
         </div>
 
         <Search
@@ -147,14 +147,14 @@ const MypickModal = ({ onSelect }) => {
           placeholder="기업 이름을 입력해주세요"
         ></Search>
 
-        <div className={styles.section}>
+        <div className={styles.sessionSection}>
           <p className={styles.subtle}>최근 선택된 기업</p>
           {session()}
         </div>
 
         {/* 검색 결과 있는 경우에만 검색 결과 제공 */}
         {search && (
-          <div className={styles.section}>
+          <div className={styles.resultSection}>
             <p className={styles.subtle}>검색 결과</p>
             {result()}
           </div>
