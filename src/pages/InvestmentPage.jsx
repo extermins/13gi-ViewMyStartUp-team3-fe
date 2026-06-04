@@ -5,23 +5,18 @@ import "./InvestmentPage.css";
 import Pagination from "../components/pagination/Pagination";
 import Dropdown from "../components/common/dropdown/dropdown";
 
-// Mock 데이터 요청 함수 임포트
+// 임시 Mock 데이터 요청 함수 임포트
 import { MOCK_DATA_LIST } from "../data/InvestmentMock";
 
 const InvestmentPage = () => {
-  // [나중용 상태 관리 Area 복구용 주석]
-  // const [dataList, setDataList] = useState([]);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [sortBy, setSortBy] = useState("vms_investment_desc");
-  // const [totalCount, setTotalCount] = useState(0);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // 임시 데이터 초기값
-  const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("vms_investment_desc");
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  // API 연결 시 주석 해제할 상태값들
+  // const [dataList, setDataList] = useState([]);
+  // const [totalCount, setTotalCount] = useState(0);
 
-  // [Side Effect Area] - 페이지 번호나 정렬 조건 변경 시 데이터 호출
+  // 페이지 번호나 정렬 조건 변경 시 데이터 호출
   useEffect(() => {
     // const getPageData = async () => {
     //   setIsLoading(true);
@@ -42,36 +37,29 @@ const InvestmentPage = () => {
     // getPageData();
   }, [currentPage, sortBy]);
 
-  // ==========================================
-  // Mock 데이터
-  // ==========================================
-
+  // 임시 Mock 데이터 정렬
   const getSortedMockData = () => {
     const sorted = [...MOCK_DATA_LIST];
 
-    // 1. View My Startup 투자 금액 정렬 (vms_investment)
+    // View My Startup 투자 금액 정렬 (vms_investment)
     if (sortBy === "vms_investment_desc" || sortBy === "vms_desc") {
-      // 높은순 (내림차순)
       return sorted.sort((a, b) => b.latestRoundAmount - a.latestRoundAmount);
     } else if (sortBy === "vms_investment_asc" || sortBy === "vms_asc") {
-      // 낮은순 (오름차순)
       return sorted.sort((a, b) => a.latestRoundAmount - b.latestRoundAmount);
     }
 
-    // 2. 실제 누적 투자 금액 정렬 (total_investment)
+    // 실제 누적 투자 금액 정렬 (total_investment)
     else if (sortBy === "vms_actual_desc" || sortBy === "total_desc") {
-      // 높은순 (내림차순)
       return sorted.sort((a, b) => b.totalInvestment - a.totalInvestment);
     } else if (sortBy === "vms_actual_asc" || sortBy === "total_asc") {
-      // 낮은순 (오름차순)
       return sorted.sort((a, b) => a.totalInvestment - b.totalInvestment);
     }
 
-    return sorted; // 매칭되는 게 없으면 기본 데이터 반환
+    return sorted;
   };
 
+  // 임시 현재 정렬된 전체 데이터 개수로 totalCount 동적 연동
   const sortedMockData = getSortedMockData();
-  // 현재 정렬된 전체 데이터 개수로 totalCount 동적 연동
   const currentTotalCount = sortedMockData.length;
 
   // 현재 페이지(10개 단위)에 맞춰서 배열 자르기 (Slice)
@@ -83,9 +71,7 @@ const InvestmentPage = () => {
     indexOfLastItem,
   );
 
-  // ==========================================
-
-  // [Event Handler Area] - 드롭다운 정렬 변경 시 호출
+  // 드롭다운 정렬 변경 시 호출
   const handleSortChange = (selectedOption) => {
     console.log("선택된 드롭다운 옵션:", selectedOption);
     setSortBy(selectedOption.id);
@@ -95,7 +81,7 @@ const InvestmentPage = () => {
   return (
     <div className="investment-page-container">
       <main className="investment-main">
-        {/* 1. 상단 헤더 영역 (타이틀 & 드롭다운) */}
+        {/* 상단 헤더 영역 타이틀 & 드롭다운 */}
         <section className="investment-header">
           <h1 className="page-title">투자 현황</h1>
           <div className="filter-area">
@@ -103,7 +89,7 @@ const InvestmentPage = () => {
           </div>
         </section>
 
-        {/* 2. 중앙 테이블 영역 (데이터 표출) */}
+        {/* 중앙 테이블 영역 */}
         <section className="table-container">
           <div className="table-header-wrapper">
             <table className="investment-table">
@@ -129,7 +115,7 @@ const InvestmentPage = () => {
                     </td>
                   </tr>
                 ) : // ) : dataList.length === 0 ? (
-                currentDataList.length === 0 ? ( // 임시용
+                currentDataList.length === 0 ? ( // 임시
                   <tr>
                     <td colSpan="6" className="table-message">
                       데이터가 없습니다.
@@ -181,7 +167,8 @@ const InvestmentPage = () => {
         <section className="pagination-container">
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(currentTotalCount / 10)}
+            totalPages={Math.ceil(currentTotalCount / 10)} // 임시
+            // totalPages={Math.ceil(totalCount / itemsPerPage)}
             onPageChange={(page) => setCurrentPage(page)}
           />
         </section>

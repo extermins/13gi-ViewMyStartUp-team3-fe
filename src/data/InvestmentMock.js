@@ -811,4 +811,12 @@ export const MOCK_DATA_LIST = [
     latestRoundAmount: 15,
     totalInvestment: 38,
   },
+  {
+    id: 102,
+    name: "삼겹살",
+    description: "먹고싶다",
+    industry: "음식",
+    latestRoundAmount: 10,
+    totalInvestment: 20,
+  },
 ];
