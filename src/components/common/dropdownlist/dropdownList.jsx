@@ -31,12 +31,18 @@ const RANK_OPTIONS = [
   { id: "headCount_asc", label: "고용 인원 적은순" },
 ];
 
+const INVESTMENT_OPTIONS = [
+  { id: "inveset_update", label: "수정하기" },
+  { id: "inveset_delete", label: "삭제하기" },
+];
+
 // 현재 선택된 옵션 id 관리
 export default function DropdownList({ type = "sort", onSelect }) {
   let options = SORT_OPTIONS;
   if (type === "startup") options = STARTUP_OPTIONS;
   if (type === "enterprise") options = ENTERPRISE_OPTIONS;
   if (type === "rank") options = RANK_OPTIONS;
+  if (type === "investment") options = INVESTMENT_OPTIONS;
 
   const [selectedId, setSelectedId] = useState(null);
 
