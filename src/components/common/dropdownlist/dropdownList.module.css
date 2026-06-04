@@ -23,6 +23,9 @@
 .dropdownList.rank {
   width: 168px;
 }
+.dropdownList.investment {
+  width: 144px;
+}
 
 /* 드롭 다운 아이템 */
 .dropdownItem {
