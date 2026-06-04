@@ -19,6 +19,7 @@ export default function ComparisonTable({ data }) {
             <th className="col-desc">기업 소개</th>
             <th className="col-category">카테고리</th>
             <th className="col-count">나의 기업 선택 횟수</th>
+            <th className="col-compare-count">비교 기업 선택 횟수</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +49,9 @@ export default function ComparisonTable({ data }) {
               <td className="col-category">{startup.category}</td>
               <td className="col-count">
                 {startup.mypickCount.toLocaleString()}
+              </td>
+              <td className="col-compare-count">
+                {startup.comparisonCount.toLocaleString()}
               </td>
             </tr>
           ))}
