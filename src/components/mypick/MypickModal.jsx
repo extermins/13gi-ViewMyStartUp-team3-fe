@@ -1,61 +1,172 @@
 import { useState, useEffect } from "react";
-import List from "../common/list/List";
-import styles from "./Modal.module.css";
+import styles from "./MypickModal.module.css";
+import List from "../common/list/list";
+import { Search } from "../common/searchfield/Search";
+import closeIcon from "../../assets/icons/ic-delete.svg";
+import Pagination from "../pagination/Pagination";
 
-const MypickModal = ({ onSelect }) => {
+const MypickModal = ({ onSelect, onClose }) => {
   const [companies, setCompanies] = useState([]);
+  // 검색
+  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  // 페이지네이션
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const limit = 5;
 
   useEffect(() => {
-    // DB 연결 전 더미 데이터
-    setCompanies([
-      {
-        id: 1,
-        name: "코드잇",
-        category: "에듀테크",
-        imageUrl: "https://placehold.co/80x80",
-      },
-      {
-        id: 2,
-        name: "카카오",
-        category: "IT",
-        imageUrl: "https://placehold.co/80x80",
-      },
-      {
-        id: 3,
-        name: "네이버",
-        category: "IT",
-        imageUrl: "https://placehold.co/80x80",
-      },
-      {
-        id: 4,
-        name: "토스",
-        category: "핀테크",
-        imageUrl: "https://placehold.co/80x80",
-      },
-      {
-        id: 5,
-        name: "당근마켓",
-        category: "커머스",
-        imageUrl: "https://placehold.co/80x80",
-      },
-    ]);
-  }, []);
+    async function companyData() {
+      try {
+        if (!search) {
+          setCompanies([]);
+          return;
+        }
+        setIsLoading(true);
+        const res = await fetch(
+          `http://localhost:3000/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
+        );
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        setCompanies(data.data);
+        setTotal(data.total);
+      } catch (err) {
+        console.error("기업 목록 조회 실패:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    companyData();
+  }, [search, page]);
 
-  return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
+  // 최근 선택한 기업
+  const session = () => {
+    const companies = JSON.parse(localStorage.getItem("recentCompanies")) || [];
+    // 선택한 기업 없음
+    if (companies.length === 0)
+      return (
+        <div className={styles.sessionMessageContainer}>
+          <p className={styles.message}>최근 선택한 기업이 없어요</p>
+        </div>
+      );
+
+    // 선택한 기업 있음
+    return (
+      <div className={styles.sessionList}>
         {companies.map((company) => (
           <List
             key={company.id}
-            imageUrl={company.imageUrl}
+            imageUrl={company.imageUrl || "https://placehold.co/80x80"}
             title={company.name}
             subtle={company.category}
             label="선택하기"
             onSelect={() => {
               onSelect(company);
             }}
+            buttonVariant="outline"
+            buttonRadius="square"
           />
         ))}
+      </div>
+    );
+  };
+
+  // 검색 결과
+  const result = () => {
+    // 검색한 후 로딩
+    if (isLoading)
+      return (
+        <div className={styles.resultMessageContainer}>
+          <p className={styles.message}>로딩 중...</p>
+        </div>
+      );
+
+    // 검색한 후 결과 없음
+    if (search && companies.length === 0)
+      return (
+        <div className={styles.resultList}>
+          <div className={styles.resultMessageContainer}>
+            <p className={styles.message}>
+              검색 결과가 없어요
+              <br />
+              다시 검색해보세요
+            </p>
+          </div>
+        </div>
+      );
+
+    // 검색 결과 있음
+    return (
+      <>
+        <div className={styles.resultList}>
+          {companies.map((company) => (
+            <List
+              key={company.id}
+              imageUrl={company.imageUrl || "https://placehold.co/80x80"}
+              title={company.name}
+              subtle={company.category}
+              label="선택하기"
+              onSelect={() => {
+                onSelect(company);
+              }}
+              buttonVariant="outline"
+              buttonRadius="square"
+            />
+          ))}
+        </div>
+        <div className={styles.pagination}>
+          {companies.length >= 1 && (
+            <Pagination
+              currentPage={page}
+              totalPages={Math.ceil(total / limit)}
+              onPageChange={setPage}
+              style={{
+                backgroundColor: "transparent",
+                paddingTop: "0",
+                paddingBottom: "0",
+              }}
+            />
+          )}
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.container}>
+        <div className={styles.titleContainer}>
+          <p className={styles.title}>나의 기업 선택하기</p>
+          <img className={styles.image} src={closeIcon} onClick={onClose} />
+        </div>
+
+        <Search
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onClear={() => {
+            setSearchText("");
+          }}
+          onSearch={() => setSearch(searchText)}
+          placeholder="기업 이름을 입력해주세요"
+        ></Search>
+
+        <div className={styles.sessionSection}>
+          <p className={styles.subtle}>최근 선택된 기업</p>
+          {session()}
+        </div>
+
+        {/* 검색 결과 있는 경우에만 검색 결과 제공 */}
+        {search && (
+          <div className={styles.resultSection}>
+            <p className={styles.subtle}>
+              검색 결과 {search.length > 0 && `(${total})`}
+            </p>
+            {result()}
+          </div>
+        )}
       </div>
     </div>
   );
