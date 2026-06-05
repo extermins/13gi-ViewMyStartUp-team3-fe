@@ -1,10 +1,11 @@
-// src/components/listfilter/ListFilter.jsx
+// src/components/ListFilter/ListFilter.jsx (또는 listfilter/ListFilter.jsx)
 import React, { useState, useEffect } from "react";
 import styles from "./ListFilter.module.css";
 import { Search } from "../common/searchfield/Search.jsx";
 import Dropdown from "../common/dropdown/dropdown.jsx";
 
-function ListFilter() {
+// 부모(HomePage)가 내려준 (onSearch, onSort)를 받습니다
+function ListFilter({ onSearch, onSort }) {
   const [keyword, setKeyword] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 375);
 
@@ -15,11 +16,13 @@ function ListFilter() {
   }, []);
 
   const handleSearch = () => {
-    console.log("검색어:", keyword);
+    // 돋보기 버튼을 누르면 부모에게 검색어를 알립니다
+    if (onSearch) onSearch(keyword);
   };
 
   const handleSort = (option) => {
-    console.log("선택된 정렬:", option.id);
+    // 정렬을 선택하면 부모에게 선택된 옵션(예: 매출액 높은순)을 알립니다
+    if (onSort) onSort(option);
   };
 
   return (
@@ -33,7 +36,11 @@ function ListFilter() {
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="검색어를 입력해주세요"
             onSearch={handleSearch}
-            onClear={() => setKeyword("")}
+            onClear={() => {
+              setKeyword("");
+              // x 버튼을 눌러 초기화할 때도 부모에게 빈 검색어를 알려서 목록을 원래대로 돌려놓습니다.
+              if (onSearch) onSearch("");
+            }}
           />
         </div>
 
