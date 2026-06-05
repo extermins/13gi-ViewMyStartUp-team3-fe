@@ -15,7 +15,7 @@
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 640px;
+  min-width: 860px;
 }
 
 /* 헤더 */
@@ -57,9 +57,10 @@
 /* 컬럼 너비 */
 .col-rank   { width: 72px; text-align: center; }
 .col-name   { min-width: 160px; }
-.col-desc   { min-width: 200px; }
+.col-desc   { min-width: 220px; }
 .col-category { width: 100px; }
 .col-count  { width: 160px; text-align: right; }
+.col-compare-count { width: 180px; text-align: right; }
 
 /* 기업 명 셀 */
 .startup-name-cell {
@@ -116,9 +117,12 @@
 
 /* 반응형 */
 @media (max-width: 768px) {
-  .col-desc,
   .col-category {
     display: none;
+  }
+
+  .comparison-table {
+    min-width: 720px;
   }
 
   /* 모바일에서 기업명 아래 카테고리 표시 */

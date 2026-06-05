@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import ComparisonTable from '../components/comparison/ComparisonTable'
 import Dropdown from '../components/common/dropdown/dropdown'
+import Pagination from '../components/pagination/Pagination'
 import { getComparisonStats } from '../api/compareApi'
 import './ComparisonPage.css'
 
+// enterprise 드롭다운 id를 비교현황 API 정렬 파라미터로 변환
 const SORT_PARAM_MAP = {
   my_selection_desc:      { sortBy: 'mypickCount',      order: 'desc' },
   my_selection_asc:       { sortBy: 'mypickCount',      order: 'asc'  },
-  actual_investment_desc: { sortBy: 'totalInvestment',  order: 'desc' },
-  actual_investment_asc:  { sortBy: 'totalInvestment',  order: 'asc'  },
+  comparison_count_desc:  { sortBy: 'comparisonCount',  order: 'desc' },
+  comparison_count_asc:   { sortBy: 'comparisonCount',  order: 'asc'  },
 }
 
 const PAGE_SIZE = 10
@@ -72,33 +74,11 @@ export default function ComparisonPage() {
         )}
 
         {/* 페이지네이션 */}
-        <div className="pagination">
-          <button
-            className="pagination-btn pagination-arrow"
-            disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
-          >
-            ‹
-          </button>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              className={`pagination-btn ${currentPage === page ? 'pagination-btn--active' : ''}`}
-              onClick={() => handlePageChange(page)}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button
-            className="pagination-btn pagination-arrow"
-            disabled={currentPage === totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            ›
-          </button>
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
 
       </div>
     </div>
