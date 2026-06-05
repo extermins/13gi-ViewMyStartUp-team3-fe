@@ -171,20 +171,23 @@ export default function CompareResult() {
     setErrors({});
 
     try {
-      const response = await fetch(`http://localhost:3000/api/invest/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://one3gi-viewmystartup-team3-be.onrender.com/api/invest/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            companyId: mypickid,
+            name: modalForm.name,
+            amount: modalForm.amount,
+            comment: modalForm.comment,
+            password: modalForm.password,
+            organization: modalForm.organization,
+          }),
         },
-        body: JSON.stringify({
-          companyId: mypickid,
-          name: modalForm.name,
-          amount: modalForm.amount,
-          comment: modalForm.comment,
-          password: modalForm.password,
-          organization: modalForm.organization,
-        }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
