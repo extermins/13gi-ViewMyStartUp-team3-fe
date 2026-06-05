@@ -1,7 +1,7 @@
 // src/components/startuptable/StartupTable.jsx
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import styles from "./StartupTable.module.css";
 
 function StartupTable({ data = [] }) {

@@ -171,6 +171,10 @@
 .amount-cell {
   width: 19.2%;
 }
+.aaa {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 색상 상속 (파란색/보라색 제거) */
+}
 
 /* 375px 이하 가로 스크롤 반응형 레이아웃 */
 @media (max-width: 375px) {

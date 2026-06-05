@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://one3gi-viewmystartup-team3-be.onrender.com";
 
 // 매개변수에 keyword와 sort를 추가로 받습니다!
 export async function getCompanies({
