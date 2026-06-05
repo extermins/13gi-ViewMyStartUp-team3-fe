@@ -6,7 +6,7 @@ import { useModal } from "../../hooks/useModal";
 import { Input, PasswordInput, TextArea } from "../common/inputfield/Input";
 import Modal from "./Modal";
 import Button from "../common/button/button";
-import corpinvestAPI from "../../pages/companypage/corpinvestAPI";
+import corpinvestAPI from "../../pages/companypage/CorpInvestAPI";
 
 export default function InvesetModal({
   type,
