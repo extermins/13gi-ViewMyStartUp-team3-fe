@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "http://localhost:3000";
 
 // 매개변수에 keyword와 sort를 추가로 받습니다!
 export async function getCompanies({
