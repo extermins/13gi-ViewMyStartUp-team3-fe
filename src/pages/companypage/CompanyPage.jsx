@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styles from "/src/pages/companyPage/CompanyPage.module.css";
+import styles from "./CompanyPage.module.css";
 import { useParams } from "react-router";
 import { formatNumber } from "../../components/utils/formatNumber";
-import corpinvestAPI from "./corpinvestAPI";
+import corpinvestAPI from "./CorpInvestAPI";
 import { useModal } from "../../hooks/useModal";
 import InvesetModal from "../../components/modal/InvesetModal";
 import PasswordModal from "../../components/modal/PasswordModal";
