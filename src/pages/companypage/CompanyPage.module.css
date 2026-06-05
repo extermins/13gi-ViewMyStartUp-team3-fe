@@ -1,0 +1,266 @@
+.company-info {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+
+  margin: 39.38px auto;
+}
+.company-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.company-img {
+  width: 81.231px;
+  height: 81.231px;
+  background: lightgray 50% / cover no-repeat;
+
+  border-radius: 50%;
+}
+.name-category {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.company-name {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.company-category {
+  color: var(--gray-gray_200, #747474);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.company-info-money {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.card-money {
+  display: flex;
+  width: 384px;
+  padding: 36px 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  border-radius: 10px;
+  background: #282828;
+}
+.text-title {
+  color: var(--gray-gray_100, #d8d8d8);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+.text-money {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.company-desc-back {
+  display: flex;
+  width: 1200px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+
+  margin: 32px auto;
+
+  gap: 16px;
+
+  border-radius: 10px;
+  background: var(--black-black_200, #212121);
+}
+.company-desc-title {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.company-desc {
+  white-space: pre-wrap;
+
+  color: #d8d8d8;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.invest-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.invest-title {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.invest-button {
+  display: flex;
+  height: 40px;
+  padding: 8px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.total-money {
+  margin: 16px auto;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.invest-table {
+  text-align: center;
+
+  width: 100%;
+  border-collapse: separate;
+  table-layout: fixed;
+}
+
+.invest-table thead {
+  background: var(--black-black_100, #2e2e2e);
+  border-spacing: 0 16px;
+}
+
+.invest-table th {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+
+  padding: 10px;
+}
+
+.invest-table td {
+  border-bottom: 1px solid var(--gray-gray_300, #4b4b4b);
+  background: var(--black-black_200, #212121);
+
+  color: #d8d8d8;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  padding: 15px 16px;
+}
+
+/* 테이블 간격 차지 */
+.invest-table th:nth-child(1),
+.invest-table th:nth-child(2),
+.invest-table th:nth-child(3),
+.invest-table th:nth-child(5),
+.invest-table td:nth-child(1),
+.invest-table td:nth-child(2),
+.invest-table td:nth-child(3),
+.invest-table td:nth-child(5) {
+  text-align: center;
+
+  width: 10%;
+}
+
+.invest-table th:nth-child(4) {
+  width: auto;
+}
+.invest-table td:nth-child(4) {
+  text-align: left;
+}
+
+/* radius부분 */
+.invest-table thead tr th:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.invest-table thead tr th:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.invest-table tbody tr:first-child {
+  height: 16px;
+}
+.invest-table tbody tr:nth-child(2) td:first-child {
+  border-top-left-radius: 4px;
+}
+.invest-table tbody tr:nth-child(2) td:last-child {
+  border-top-right-radius: 4px;
+}
+.invest-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+.invest-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+.invest-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.kebab-cell {
+  position: relative;
+  text-align: right;
+}
+
+.kebab-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  width: 24px;
+  height: 24px;
+}
+.inveset-empty {
+  margin: 120px auto;
+  color: var(--gray-gray_200, #747474);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.listWrapper {
+  position: absolute;
+  top: 85%;
+  left: -45%;
+  z-index: 1;
+}

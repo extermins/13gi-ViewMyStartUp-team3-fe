@@ -6,6 +6,7 @@ import Mypick from "./pages/Mypick";
 import CompareResult from "./pages/compareresult/CompareResult";
 import HomePage from "./pages/HomePage";
 import InvestmentPage from "./pages/InvestmentPage";
+import CompanyPage from "./pages/companypage/CompanyPage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/mypick/result" element={<CompareResult />} />
           <Route path="/compare" element={<ComparisonPage />} />
           <Route path="/investment" element={<InvestmentPage />} />
-          {/* <Route path="/company/:id" element={} /> */}
+          <Route path="/company/:id" element={<CompanyPage />} />
         </Route>
       </Routes>
     </>
