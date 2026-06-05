@@ -5,76 +5,59 @@ import "./InvestmentPage.css";
 import Pagination from "../components/pagination/Pagination";
 import Dropdown from "../components/common/dropdown/dropdown";
 
-// 임시 Mock 데이터 요청 함수 임포트
-import { MOCK_DATA_LIST } from "../data/InvestmentMock";
+const formatToEok = (value) => {
+  if (!value) return "0억 원";
+  const eok = Math.floor(value / 100000000); // 1억으로 나누기
+  return `${eok.toLocaleString()}억 원`;
+};
 
 const InvestmentPage = () => {
-  const [sortBy, setSortBy] = useState("vms_investment_desc");
+  const [sortBy, setSortBy] = useState("simulated");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  // API 연결 시 주석 해제할 상태값들
-  // const [dataList, setDataList] = useState([]);
-  // const [totalCount, setTotalCount] = useState(0);
+  const [dataList, setDataList] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
   // 페이지 번호나 정렬 조건 변경 시 데이터 호출
   useEffect(() => {
-    // const getPageData = async () => {
-    //   setIsLoading(true);
-    //   try {
-    //     const response = await fetchInvestmentRankings({
-    //       page: currentPage,
-    //       limit: 10,
-    //       sort: sortBy,
-    //     });
-    //     setDataList(response.data.list);
-    //     setTotalCount(response.data.totalCount);
-    //   } catch (error) {
-    //     console.error("데이터 로딩 실패:", error);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // getPageData();
-  }, [currentPage, sortBy]);
+    const getPageData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/investcompanies?page=${currentPage}&pageSize=10&orderBy=${sortBy}&sort=${sortOrder}`,
+        );
 
-  // 임시 Mock 데이터 정렬
-  const getSortedMockData = () => {
-    const sorted = [...MOCK_DATA_LIST];
+        const result = await response.json();
 
-    // View My Startup 투자 금액 정렬 (vms_investment)
-    if (sortBy === "vms_investment_desc" || sortBy === "vms_desc") {
-      return sorted.sort((a, b) => b.latestRoundAmount - a.latestRoundAmount);
-    } else if (sortBy === "vms_investment_asc" || sortBy === "vms_asc") {
-      return sorted.sort((a, b) => a.latestRoundAmount - b.latestRoundAmount);
-    }
+        if (result.success) {
+          setDataList(result.data);
+          setTotalCount(result.pagination.totalCount);
+        }
+      } catch (error) {
+        console.error("데이터 로딩 실패:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getPageData();
+  }, [currentPage, sortBy, sortOrder]);
 
-    // 실제 누적 투자 금액 정렬 (total_investment)
-    else if (sortBy === "vms_actual_desc" || sortBy === "total_desc") {
-      return sorted.sort((a, b) => b.totalInvestment - a.totalInvestment);
-    } else if (sortBy === "vms_actual_asc" || sortBy === "total_asc") {
-      return sorted.sort((a, b) => a.totalInvestment - b.totalInvestment);
-    }
-
-    return sorted;
-  };
-
-  // 임시 현재 정렬된 전체 데이터 개수로 totalCount 동적 연동
-  const sortedMockData = getSortedMockData();
-  const currentTotalCount = sortedMockData.length;
-
-  // 현재 페이지(10개 단위)에 맞춰서 배열 자르기 (Slice)
-  const itemsPerPage = 10;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentDataList = sortedMockData.slice(
-    indexOfFirstItem,
-    indexOfLastItem,
-  );
-
-  // 드롭다운 정렬 변경 시 호출
   const handleSortChange = (selectedOption) => {
-    console.log("선택된 드롭다운 옵션:", selectedOption);
-    setSortBy(selectedOption.id);
+    const id = selectedOption.id;
+
+    if (id.includes("vms_investment")) {
+      setSortBy("simulated");
+    } else if (id.includes("vms_actual")) {
+      setSortBy("actual");
+    }
+
+    if (id.includes("asc")) {
+      setSortOrder("asc");
+    } else {
+      setSortOrder("desc");
+    }
+
     setCurrentPage(1);
   };
 
@@ -114,16 +97,14 @@ const InvestmentPage = () => {
                       로딩 중...
                     </td>
                   </tr>
-                ) : // ) : dataList.length === 0 ? (
-                currentDataList.length === 0 ? ( // 임시
+                ) : dataList.length === 0 ? (
                   <tr>
                     <td colSpan="6" className="table-message">
                       데이터가 없습니다.
                     </td>
                   </tr>
                 ) : (
-                  // dataList.map((item, index) => (
-                  currentDataList.map((item, index) => (
+                  dataList.map((item, index) => (
                     <tr key={item.id || index} className="data-row">
                       <td className="rank-cell">
                         {(currentPage - 1) * 10 + (index + 1)}위
@@ -147,13 +128,13 @@ const InvestmentPage = () => {
                       </td>
 
                       <td className="category-cell">
-                        <span className="category-tag">{item.industry}</span>
+                        <span className="category-tag">{item.category}</span>
                       </td>
                       <td className="amount-cell">
-                        {item.latestRoundAmount?.toLocaleString()}억 원
+                        {formatToEok(item.simulatedInvestment)}
                       </td>
                       <td className="amount-cell">
-                        {item.totalInvestment?.toLocaleString()}억 원
+                        {formatToEok(item.actualInvestment)}
                       </td>
                     </tr>
                   ))
@@ -167,8 +148,7 @@ const InvestmentPage = () => {
         <section className="pagination-container">
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(currentTotalCount / 10)} // 임시
-            // totalPages={Math.ceil(totalCount / itemsPerPage)}
+            totalPages={Math.ceil(totalCount / 10)}
             onPageChange={(page) => setCurrentPage(page)}
           />
         </section>
