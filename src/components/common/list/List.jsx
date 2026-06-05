@@ -9,6 +9,7 @@ const List = ({
   onSelect,
   disabled,
   buttonVariant,
+  buttonRadius,
 }) => {
   return (
     <section className={styles.container}>
@@ -17,7 +18,12 @@ const List = ({
         <p className={styles.title}>{title}</p>
         <p className={styles.subtle}>{subtle}</p>
       </div>
-      <Button onClick={onSelect} disabled={disabled} variant={buttonVariant}>
+      <Button
+        onClick={onSelect}
+        disabled={disabled}
+        variant={buttonVariant}
+        radius={buttonRadius}
+      >
         {label}
       </Button>
     </section>
