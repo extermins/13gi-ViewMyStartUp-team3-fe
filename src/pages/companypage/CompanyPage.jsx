@@ -194,8 +194,9 @@ export default function CompanyPage() {
                   <th></th>
                 </tr>
               </thead>
-              <div style={{ height: "16px" }} />
               <tbody>
+                {/* 밑에 tr은 테이블 간격주려고 만든 tr */}
+                <tr />
                 {invesetList.map((invest) => (
                   <tr key={invest.id}>
                     <td>{invest.name}</td>
