@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Mypick.module.css";
 import plusIcon from "../assets/icons/ic-plus.svg";
 import SectionBox from "../components/mypick/SectionBox";
-import Card from "../components/common/card/card";
+import Card from "../components/common/card/Card";
 import Button from "../components/common/button/button";
 import MypickModal from "../components/mypick/MypickModal";
 import CompareModal from "../components/mypick/CompareModal";

@@ -1,8 +1,8 @@
 // src/pages/HomePage.jsx
 import React, { useState, useEffect } from "react";
-import ListFilter from "../components/ListFilter/ListFilter";
-import StartupTable from "../components/StartupTable/StartupTable";
-import Pagination from "../components/Pagination/Pagination";
+import ListFilter from "../components/listfilter/ListFilter";
+import StartupTable from "../components/startuptable/StartupTable";
+import Pagination from "../components/pagination/Pagination";
 import styles from "./HomePage.module.css";
 import { getCompanies } from "../api/companiesApi";
 import { formatNumber } from "../components/utils/formatNumber.js";
