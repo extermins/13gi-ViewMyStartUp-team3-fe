@@ -17,11 +17,12 @@ const STARTUP_OPTIONS = [
   { id: "vms_actual_asc", label: "실제 누적 투자 금액 낮은순" },
 ];
 
+// 비교현황 페이지에서 사용하는 기업 선택 횟수 정렬 옵션
 const ENTERPRISE_OPTIONS = [
   { id: "my_selection_desc", label: "나의 기업 선택 횟수 높은순" },
   { id: "my_selection_asc", label: "나의 기업 선택 횟수 낮은순" },
-  { id: "actual_investment_desc", label: "실제 누적 투자 금액 높은순" },
-  { id: "actual_investment_asc", label: "실제 누적 투자 금액 낮은순" },
+  { id: "comparison_count_desc", label: "비교 기업 선택 횟수 높은순" },
+  { id: "comparison_count_asc", label: "비교 기업 선택 횟수 낮은순" },
 ];
 
 const RANK_OPTIONS = [
