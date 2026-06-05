@@ -5,23 +5,29 @@ import styles from "./Pagination.module.css";
 import ArrowLeftIcon from "../../assets/icons/ic-arrow-left.svg";
 import ArrowRightIcon from "../../assets/icons/ic-arrow-right.svg";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
-  const pagesPerGroup = 5; //  한 화면에 보여줄 페이지 번호 개수
+// 커스텀을 위한 className과 style이라는 props 생성. 기본값은 빈 상태로 둡니다
+function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+  className = "",
+  style = {},
+}) {
+  const pagesPerGroup = 5;
 
-  const currentGroup = Math.ceil(currentPage / pagesPerGroup); // 현재 페이지가 속한 그룹 계산 (예: 1~5페이지는 1그룹, 6~10페이지는 2그룹)
+  const currentGroup = Math.ceil(currentPage / pagesPerGroup);
 
-  // 현재 그룹의 시작 번호와 끝 번호 계산
   const startPage = (currentGroup - 1) * pagesPerGroup + 1;
   const endPage = Math.min(currentGroup * pagesPerGroup, totalPages);
 
-  // 계산된 구간(startPage ~ endPage)만큼만 배열 생성
   const pageNumbers = [];
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
 
   return (
-    <div className={styles.paginationContainer}>
+    // 외부에서 들어온 className과 style을 최상단 컨테이너 적용
+    <div className={`${styles.paginationContainer} ${className}`} style={style}>
       {/* ◀ 이전 페이지 버튼 */}
       <button
         className={`${styles.arrowButton} ${currentPage === 1 ? styles.disabledButton : ""}`}
@@ -31,7 +37,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         <img src={ArrowLeftIcon} alt="이전 페이지" />
       </button>
 
-      {/* 숫자 버튼 그룹 (최대 5개만 렌더링) */}
+      {/* 숫자 버튼 그룹 */}
       <div className={styles.numbersWrapper}>
         {pageNumbers.map((number) => (
           <button
