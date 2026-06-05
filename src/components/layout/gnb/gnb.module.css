@@ -16,7 +16,8 @@ position,left,transform의 내용은 width을 꽉 채우려고 이렇게 설정�
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-left: 360px;
+  margin: auto;
+  max-width: 1200px;
   gap: 40px;
 
   height: 100%;
