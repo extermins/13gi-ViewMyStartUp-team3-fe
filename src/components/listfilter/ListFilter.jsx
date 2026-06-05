@@ -1,4 +1,4 @@
-// src/components/ListFilter/ListFilter.jsx (또는 listfilter/ListFilter.jsx)
+// src/components/listFilter/ListFilter.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./ListFilter.module.css";
 import { Search } from "../common/searchfield/Search.jsx";
