@@ -80,9 +80,12 @@ const Mypick = () => {
       ),
     );
 
-    // 결과 페이지로 보낼 데이터 로컬 스토리지로 저장하기 -> id 값으로 넘기기
-    localStorage.setItem("myCompany", JSON.stringify(myCompany));
-    localStorage.setItem("compareCompany", JSON.stringify(compareCompany));
+    // 결과 페이지로 보낼 데이터 로컬 스토리지로 저장하기
+    localStorage.setItem("myCompany", JSON.stringify(myCompany.id));
+    localStorage.setItem(
+      "compareCompany",
+      JSON.stringify(compareCompany.map((company) => company.id)),
+    );
 
     navigate("/mypick/result");
   };

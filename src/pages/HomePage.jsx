@@ -4,46 +4,103 @@ import ListFilter from "../components/ListFilter/ListFilter";
 import StartupTable from "../components/StartupTable/StartupTable";
 import Pagination from "../components/Pagination/Pagination";
 import styles from "./HomePage.module.css";
+import { getCompanies } from "../api/companiesApi";
+
+const formatCurrency = (value) => {
+  if (!value) return "0원";
+  const num = Number(value);
+  if (num >= 100000000) {
+    return `${(num / 100000000).toLocaleString()}억 원`;
+  }
+  return `${num.toLocaleString()}원`;
+};
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [companies, setCompanies] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 10;
+
+  // 사용자가 입력한 검색어와 선택한 정렬 방식을 기억할 공간을 만듭니다
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
-    // 페이지에 들어오면 body 배경을 까맣게 칠함
     document.body.style.backgroundColor = "var(--color-black-400, #131313)";
-
-    // 다른 페이지로 이동할 때(언마운트) 원래대로 초기화
     return () => {
       document.body.style.backgroundColor = "";
     };
   }, []);
 
-  // 백엔드 연결 전 임시 '더미 데이터'
-  const [companies, setCompanies] = useState(
-    Array.from({ length: 10 }, (_, index) => ({
-      id: index + 1,
-      rank: `${index + 1}위`,
-      name: `주식회사 뷰마스타${index + 1}`,
-      description:
-        "세상을 바꾸는 혁신적인 아이디어로 출발한 IT 스타트업입니다.",
-      category: "IT/Web",
-      investment: "100억 원",
-      revenue: "300억 원",
-      employees: "120명",
-    })),
-  );
+  useEffect(() => {
+    const fetchCompaniesData = async () => {
+      try {
+        // API를 부를 때 우리가 기억해둔 검색어와 정렬 방식도 같이 보냅니다
+        const result = await getCompanies({
+          page: currentPage,
+          pageSize: pageSize,
+          keyword: searchKeyword,
+          sort: sortOption,
+        });
+
+        if (result.success) {
+          // 백엔드가 준 첫 번째 기업의 진짜 데이터
+          console.log(
+            "백엔드가 보낸 1등 기업 데이터:",
+            JSON.stringify(result.data[0], null, 2),
+          );
+
+          const formattedData = result.data.map((company, index) => ({
+            id: company.id,
+            rank: `${(currentPage - 1) * pageSize + index + 1}위`,
+            name: company.name,
+            // 백엔드에서 온 imageUrl
+            imageUrl: company.imageUrl || "",
+            description: company.description,
+            category: company.category,
+            investment: formatCurrency(company.actualInvestment),
+            revenue: formatCurrency(company.revenue),
+            employees: `${company.headCount}명`,
+          }));
+
+          setCompanies(formattedData);
+          setTotalPages(result.pagination.totalPages);
+        }
+      } catch (error) {
+        console.error("스타트업 데이터를 불러오는데 실패했습니다:", error);
+      }
+    };
+
+    fetchCompaniesData();
+  }, [currentPage, searchKeyword, sortOption]);
+  // 중요: currentPage, searchKeyword, sortOption 셋 중 하나라도 바뀌면 useEffect가 다시 실행
 
   return (
     <div className={styles.pageBackground}>
       <div className={styles.contentWrapper}>
-        <ListFilter />
+        {/* ListFilter가 무전을 치면 어떻게 행동할지 지시 */}
+        <ListFilter
+          onSearch={(keyword) => {
+            setSearchKeyword(keyword);
+            setCurrentPage(1); // 검색을 새로 하면 무조건 1페이지로 돌아가야 합니다
+          }}
+          onSort={(option) => {
+            // Dropdown 컴포넌트가 객체를 주는지 문자열을 주는지에 따라 유연하게 대응
+            const sortValue = option.id || option.value || option;
 
-        {/* 자식 테이블에게 더미 데이터를 props로 던져줍니다 */}
+            // 백엔드로 보내기 직전에 암호가 뭔지 콘솔에 찍어봅니다
+            console.log("드롭다운 암호 확인:", sortValue);
+
+            setSortOption(sortValue);
+            setCurrentPage(1); // 정렬을 바꿔도 무조건 1페이지로 돌아가야 합니다
+          }}
+        />
+
         <StartupTable data={companies} />
 
         <Pagination
           currentPage={currentPage}
-          totalPages={10}
+          totalPages={totalPages}
           onPageChange={(page) => setCurrentPage(page)}
         />
       </div>
