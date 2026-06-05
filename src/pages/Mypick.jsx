@@ -64,7 +64,7 @@ const Mypick = () => {
   const handleCompare = async () => {
     if (!myCompany) return;
     await fetch(
-      `http://localhost:3000/api/mypick/companies/${myCompany.id}/mypick`,
+      `https://one3gi-viewmystartup-team3-be.onrender.com/api/mypick/companies/${myCompany.id}/mypick`,
       {
         method: "PATCH",
       },
@@ -72,7 +72,7 @@ const Mypick = () => {
     await Promise.all(
       compareCompany.map((company) =>
         fetch(
-          `http://localhost:3000/api/mypick/companies/${company.id}/comparison`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/mypick/companies/${company.id}/comparison`,
           {
             method: "PATCH",
           },

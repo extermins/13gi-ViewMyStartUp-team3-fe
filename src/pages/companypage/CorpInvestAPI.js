@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://one3gi-viewmystartup-team3-be.onrender.com";
 
 export default {
   getCompany: async (id) => {

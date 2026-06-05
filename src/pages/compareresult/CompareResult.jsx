@@ -38,7 +38,7 @@ export default function CompareResult() {
     const mypickCompany = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/companies/mypick/${mypickid}`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/companies/mypick/${mypickid}`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +68,7 @@ export default function CompareResult() {
     const compareCompanies = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/companies/compare/${[mypickid, ...compareCompaniesId].join(",")}?orderBy=${compareOrderBy}&sort=${compareSort}`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/companies/compare/${[mypickid, ...compareCompaniesId].join(",")}?orderBy=${compareOrderBy}&sort=${compareSort}`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -92,7 +92,7 @@ export default function CompareResult() {
     const rankCompanies = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/companies/rank/${mypickid}?orderBy=${rankOrderBy}&sort=${rankSort}`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/companies/rank/${mypickid}?orderBy=${rankOrderBy}&sort=${rankSort}`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

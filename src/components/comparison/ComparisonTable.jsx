@@ -1,4 +1,5 @@
-import './ComparisonTable.css'
+import { Link } from "react-router";
+import "./ComparisonTable.css";
 
 export default function ComparisonTable({ data }) {
   if (!data || data.length === 0) {
@@ -6,7 +7,7 @@ export default function ComparisonTable({ data }) {
       <div className="table-empty">
         <p>데이터가 없습니다.</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -27,21 +28,23 @@ export default function ComparisonTable({ data }) {
             <tr key={startup.id}>
               <td className="col-rank">{startup.rank}위</td>
               <td className="col-name">
-                <div className="startup-name-cell">
-                  {startup.imageUrl ? (
-                    <img
-                      src={startup.imageUrl}
-                      alt={startup.name}
-                      className="startup-logo-img"
-                    />
-                  ) : (
-                    <div className="startup-logo-placeholder" />
-                  )}
-                  <div className="startup-name-info">
-                    <span className="startup-name">{startup.name}</span>
-                    <span className="startup-category-sub">{startup.category}</span>
+                <Link className="aaa" to={`/company/${startup.id}`}>
+                  <div className="startup-name-cell">
+                    {startup.imageUrl ? (
+                      <img
+                        src={startup.imageUrl}
+                        alt={startup.name}
+                        className="startup-logo-img"
+                      />
+                    ) : (
+                      <div className="startup-logo-placeholder" />
+                    )}
+                    <div className="startup-name-info">
+                      <span className="startup-name">{startup.name}</span>
+                      {/* <span className="startup-category-sub">{startup.category}</span> */}
+                    </div>
                   </div>
-                </div>
+                </Link>
               </td>
               <td className="col-desc">
                 <span className="startup-desc">{startup.description}</span>
@@ -58,5 +61,5 @@ export default function ComparisonTable({ data }) {
         </tbody>
       </table>
     </div>
-  )
+  );
 }

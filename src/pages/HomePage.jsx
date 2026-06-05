@@ -5,6 +5,7 @@ import StartupTable from "../components/StartupTable/StartupTable";
 import Pagination from "../components/Pagination/Pagination";
 import styles from "./HomePage.module.css";
 import { getCompanies } from "../api/companiesApi";
+import { formatNumber } from "../components/utils/formatNumber.js";
 
 const formatCurrency = (value) => {
   if (!value) return "0원";
@@ -58,8 +59,9 @@ function HomePage() {
             imageUrl: company.imageUrl || "",
             description: company.description,
             category: company.category,
-            investment: formatCurrency(company.actualInvestment),
-            revenue: formatCurrency(company.revenue),
+            investment: formatNumber(company.actualInvestment),
+            // investment: formatCurrency(company.actualInvestment),
+            revenue: formatNumber(company.revenue),
             employees: `${company.headCount}명`,
           }));
 

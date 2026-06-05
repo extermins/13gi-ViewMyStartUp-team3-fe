@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./InvestmentPage.css";
 import { formatNumber } from "../components/utils/formatNumber";
+import { Link } from "react-router";
 
 // 공통 컴포넌트 임포트
 import Pagination from "../components/pagination/Pagination";
@@ -20,7 +21,7 @@ const InvestmentPage = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3000/api/investcompanies?page=${currentPage}&pageSize=10&orderBy=${sortBy}&sort=${sortOrder}`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/investcompanies?page=${currentPage}&pageSize=10&orderBy=${sortBy}&sort=${sortOrder}`,
         );
 
         const result = await response.json();
@@ -105,14 +106,17 @@ const InvestmentPage = () => {
                         {(currentPage - 1) * 10 + (index + 1)}위
                       </td>
                       <td className="company-name">
-                        <div className="company-info-wrap">
-                          <img
-                            src={item.logoUrl}
-                            alt={item.name}
-                            className="company-logo"
-                          />
-                          <span>{item.name}</span>
-                        </div>
+                        <Link to={`/company/${item.id}`} className="aaa">
+                          <div className="company-info-wrap">
+                            <img
+                              // src={item.logoUrl}
+                              src={"https://placehold.co/80x80"}
+                              // alt={item.name}
+                              className="company-logo"
+                            />
+                            <span>{item.name}</span>
+                          </div>
+                        </Link>
                       </td>
                       <td className="company-desc">
                         <div className="desc-cell-container">

@@ -25,7 +25,7 @@ const MypickModal = ({ onSelect, onClose }) => {
         }
         setIsLoading(true);
         const res = await fetch(
-          `http://localhost:3000/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
+          `https://one3gi-viewmystartup-team3-be.onrender.com/api/mypick/companies?search=${search}&page=${page}&limit=${limit}`,
         );
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

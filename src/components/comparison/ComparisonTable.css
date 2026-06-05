@@ -55,12 +55,27 @@
 }
 
 /* 컬럼 너비 */
-.col-rank   { width: 72px; text-align: center; }
-.col-name   { min-width: 160px; }
-.col-desc   { min-width: 220px; }
-.col-category { width: 100px; }
-.col-count  { width: 160px; text-align: right; }
-.col-compare-count { width: 180px; text-align: right; }
+.col-rank {
+  width: 72px;
+  text-align: center;
+}
+.col-name {
+  min-width: 160px;
+}
+.col-desc {
+  min-width: 220px;
+}
+.col-category {
+  width: 100px;
+}
+.col-count {
+  width: 160px;
+  text-align: right;
+}
+.col-compare-count {
+  width: 180px;
+  text-align: right;
+}
 
 /* 기업 명 셀 */
 .startup-name-cell {
@@ -113,6 +128,9 @@
   font-size: 13px;
   color: var(--text-muted, #6b7280);
   line-height: 1.5;
+}
+.aaa {
+  text-decoration: none;
 }
 
 /* 반응형 */
