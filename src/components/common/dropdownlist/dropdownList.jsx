@@ -24,15 +24,25 @@ const ENTERPRISE_OPTIONS = [
   { id: "actual_investment_asc", label: "실제 누적 투자 금액 낮은순" },
 ];
 
+const RANK_OPTIONS = [
+  { id: "revenue_desc", label: "매출액 높은순" },
+  { id: "revenue_asc", label: "매출액 낮은순" },
+  { id: "headCount_desc", label: "고용 인원 많은순" },
+  { id: "headCount_asc", label: "고용 인원 적은순" },
+];
+
+const INVESTMENT_OPTIONS = [
+  { id: "inveset_update", label: "수정하기" },
+  { id: "inveset_delete", label: "삭제하기" },
+];
+
 // 현재 선택된 옵션 id 관리
-export default function DropdownList({
-  standard = "pc",
-  type = "sort",
-  onSelect,
-}) {
+export default function DropdownList({ type = "sort", onSelect }) {
   let options = SORT_OPTIONS;
   if (type === "startup") options = STARTUP_OPTIONS;
   if (type === "enterprise") options = ENTERPRISE_OPTIONS;
+  if (type === "rank") options = RANK_OPTIONS;
+  if (type === "investment") options = INVESTMENT_OPTIONS;
 
   const [selectedId, setSelectedId] = useState(null);
 
@@ -42,19 +52,13 @@ export default function DropdownList({
       onSelect(option);
     }
   };
-  // standard 값에 따라 리스트 스타일 나누기 (PC, mobile)
-  const listClassName = `${styles.dropdownList} ${
-    standard === "mobile" ? styles.mobile : styles.pc
-  } ${styles[type]}`;
 
-  // standard 값에 따라 내부 아이템 스타일 나누기
-  const itemSizeClassName =
-    standard === "mobile" ? styles.mobileItem : styles.pcItem;
+  const listClassName = `${styles.dropdownList} ${styles[type] || ""}`;
 
   return (
     <ul className={listClassName}>
       {options.map((option) => {
-        const itemClassName = `${styles.dropdownItem} ${itemSizeClassName} ${selectedId === option.id ? styles.isSelected : ""}`;
+        const itemClassName = `${styles.dropdownItem} ${selectedId === option.id ? styles.isSelected : ""}`;
 
         return (
           <li

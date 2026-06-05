@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+}
+
+/* 전체 페이지 레이아웃 및 헤더 */
+.investment-page-container {
+  background-color: #131313;
+  width: 100%;
+}
+
+.investment-main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 0px;
+  margin: 0px auto;
+}
+
+.investment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.table-container {
+  width: 100%;
+}
+
+/* 상단 헤더 상자 */
+.table-header-wrapper {
+  height: 39px;
+  background-color: var(--color-black-100);
+  border-radius: 4px;
+  overflow: hidden;
+  isolation: isolate;
+  margin-bottom: 16px;
+}
+
+.table-body-wrapper {
+  background-color: var(--color-black-200);
+  border-radius: 4px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* 헤더와 본문의 가로 줄을 칼같이 일치시키기 위해 table-layout 고정 */
+.table-header-wrapper table,
+.table-body-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
+  table-layout: fixed; /* 글자 길이에 상관없이 모든 칸 너비를 완벽히 고정 */
+}
+
+.investment-table th {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 10px;
+  text-align: center;
+
+  display: table-cell;
+  vertical-align: middle;
+  height: 39px;
+}
+
+.investment-table td {
+  color: #d8d8d8;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 15px 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-gray-300);
+  height: 64px;
+}
+
+/* 맨 마지막 줄(10위) 바닥 선 제거 */
+.investment-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-row:hover td {
+  background-color: #252525;
+  cursor: pointer;
+}
+
+/* 각 열(Column)별 너비 고정 및 글씨 정렬 설정 */
+
+/* [1열: 순위 칸] */
+.investment-table th:nth-child(1),
+.rank-cell {
+  width: 5.6%;
+  white-space: nowrap;
+}
+
+/* [2열: 기업 명 칸] */
+.investment-table th:nth-child(2),
+.company-name {
+  width: 17.8%;
+}
+
+.investment-table .company-name {
+  color: #fff;
+  font-weight: 500;
+  text-align: left;
+  padding: 11px 0 11px 24px;
+}
+
+.company-info-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.company-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #fff;
+}
+
+/* [3열: 기업 소개 칸] */
+.investment-table th:nth-child(3),
+.company-desc {
+  width: 25.4%;
+}
+
+.desc-cell-container {
+  max-height: 33px;
+  display: grid;
+  align-items: center;
+}
+
+/* 기업 소개 글자 상자  */
+.desc-text-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 무조건 최대 2줄 제한 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* line-height: 17px; */
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* [4열: 카테고리 칸] */
+.investment-table th:nth-child(4),
+.category-cell {
+  width: 12.8%;
+}
+
+.investment-table th:nth-child(5),
+.amount-cell {
+  width: 19.2%;
+  white-space: normal;
+  word-break: keep-all;
+
+  vertical-align: middle;
+  text-align: center;
+}
+
+.investment-table th:nth-child(6),
+.amount-cell {
+  width: 19.2%;
+}
+
+/* 375px 이하 가로 스크롤 반응형 레이아웃 */
+@media (max-width: 375px) {
+  .investment-main {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 16px;
+  }
+
+  .page-title {
+    font-size: 16px;
+  }
+
+  .investment-table th {
+    font-size: 13px;
+  }
+
+  .investment-table td {
+    font-size: 13px;
+  }
+
+  /* 가로 스크롤바 */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #131313;
+  }
+
+  .table-header-wrapper table,
+  .table-body-wrapper table {
+    width: 1200px !important;
+    table-layout: fixed;
+  }
+
+  .table-header-wrapper,
+  .table-body-wrapper {
+    width: 1200px !important;
+    overflow: visible;
+  }
+  .pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
