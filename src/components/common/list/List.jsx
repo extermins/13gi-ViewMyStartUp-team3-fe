@@ -29,5 +29,4 @@ const List = ({
     </section>
   );
 };
-
 export default List;
