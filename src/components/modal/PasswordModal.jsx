@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import passwordStyle from "./PasswordModal.module.css";
 import { PasswordInput } from "../common/inputfield/Input";
 import Button from "../common/button/button";
-import corpinvestAPI from "../../pages/companypage/corpinvestAPI";
+import corpinvestAPI from "../../pages/companypage/CorpInvestAPI";
 import Modal from "./Modal";
 
 export default function PasswordModal({

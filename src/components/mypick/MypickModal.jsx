@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./MypickModal.module.css";
-import List from "../common/list/list";
+import List from "../common/list/List";
 import { Search } from "../common/searchfield/Search";
 import closeIcon from "../../assets/icons/ic-delete.svg";
 import Pagination from "../pagination/Pagination";
