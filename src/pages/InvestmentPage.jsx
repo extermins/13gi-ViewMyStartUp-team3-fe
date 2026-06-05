@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import "./InvestmentPage.css";
+import { formatNumber } from "../components/utils/formatNumber";
 
 // 공통 컴포넌트 임포트
 import Pagination from "../components/pagination/Pagination";
 import Dropdown from "../components/common/dropdown/dropdown";
-
-const formatToEok = (value) => {
-  if (!value) return "0억 원";
-  const eok = Math.floor(value / 100000000); // 1억으로 나누기
-  return `${eok.toLocaleString()}억 원`;
-};
 
 const InvestmentPage = () => {
   const [sortBy, setSortBy] = useState("simulated");
@@ -131,10 +126,10 @@ const InvestmentPage = () => {
                         <span className="category-tag">{item.category}</span>
                       </td>
                       <td className="amount-cell">
-                        {formatToEok(item.simulatedInvestment)}
+                        {formatNumber(item.simulatedInvestment)}
                       </td>
                       <td className="amount-cell">
-                        {formatToEok(item.actualInvestment)}
+                        {formatNumber(item.actualInvestment)}
                       </td>
                     </tr>
                   ))
